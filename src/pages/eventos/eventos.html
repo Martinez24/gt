@@ -7,8 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+    <button  ion-button menuToggle>
+      <ion-icon class="menu" name="menu"></ion-icon>
     </button>
     <ion-title>Eventos</ion-title>
   </ion-navbar>
@@ -20,22 +20,22 @@
   <ion-card class="card_atras" *ngFor="let evento of _cap.imagenes">
    <img [src]="evento.img"/>
  <ion-row>
-  <ion-title>{{ evento.titulo }}</ion-title>
+  <ion-title color="light">{{ evento.titulo }}</ion-title>
   <ion-row>
-            <ion-col text-right>
-                <button ion-button clear small color="primary" icon-left
+            <ion-col mr-5 text-right>
+                <button ion-button clear small color="light" icon-left
                         (click)="compartir(evento)">
-                    <ion-icon name="share-alt"></ion-icon>
-                    Compartir
+                    <img class="icon" src="../assets/imgs/icons/facebook.png">
+                     Compartir
                   </button>
 
             </ion-col>
         </ion-row>
     <ion-col text-right>
-          <button text-align ion-button clear small color="gold"
+          <button text-align ion-button clear small color="light"
               icon-left>
-                <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
-                Ir
+              <img class="icon" src="../assets/imgs/icons/mas.png">
+                Más
           </button>
     </ion-col>
    </ion-row>

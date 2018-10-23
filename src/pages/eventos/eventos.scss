@@ -1,4 +1,7 @@
 page-eventos {
+  ion-icon{
+    background-color: #eccc68;
+  }
   ion-content{
     background-image: url('../assets/imgs/fondoblanco2.png');
     background-repeat: no-repeat;
@@ -7,7 +10,21 @@ page-eventos {
     width: 100%;
     position: relative;
     border: none;
+    color: #f4f4f4;
+  }
+  .icon{
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+    margin-right: 8px;
+  }
 
+  .menu{
+    background:  #eccc68;
+    // color: #eccc68;
   }
 
   ion-card .item{
@@ -18,13 +35,11 @@ page-eventos {
     margin-left: auto;
     margin-top: -15px;
   }
-  ion-icon{
-    color: #eccc68;
-  }
+
   .card_atras{
-    background: #f1f2f6;
+    background: #000;
   }
   .text{
-      $toolbar-ios-title-text-color: #FFF;
+      $toolbar-ios-title-text-color: #f4f4f4;
   }
 }
