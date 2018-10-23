@@ -1,0 +1,31 @@
+<ion-menu  [content]="content">
+  <ion-content class="menu-content" padding>
+    <h4 >Menú</h4>
+    <ion-list class="menu-list">
+      <button  ion-item (click)="irHome( home )">
+        <img class="home" src="../assets/imgs/icons/home.png">  Home
+      </button>
+      <button ion-item (click)="irNosotros( nosotros )">
+      <img class="home" src="../assets/imgs/icons/corona.png">  Nosotros
+      </button>
+      <button ion-item (click)="irReservacion( reservacion )">
+        <img class="home" src="../assets/imgs/icons/time.png"> Reservaciones
+      </button>
+      <button ion-item (click)="irCarta( carta )">
+        <img class="home" src="../assets/imgs/icons/champagne.png">  Carta Móvil
+      </button>
+      <button ion-item (click)="irPerfil( perfil )">
+        <img class="home" src="../assets/imgs/icons/profile.png"> Perfil
+      </button>
+      <button ion-item (click)="irHistorial( historial )">
+        <img class="home" src="../assets/imgs/icons/book.png">  Historial
+      </button>
+      <button ion-item (click)="salir( rootPage )">
+        <img class="home" src="../assets/imgs/icons/turn-off.png">  Cerrar Sesión
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<ion-nav [root]="rootPage" #content></ion-nav>

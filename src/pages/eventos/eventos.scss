@@ -1,0 +1,30 @@
+page-eventos {
+  ion-content{
+    background-image: url('../assets/imgs/fondoblanco2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+      //background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+
+  }
+
+  ion-card .item{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    border: none;
+    margin-left: auto;
+    margin-top: -15px;
+  }
+  ion-icon{
+    color: #eccc68;
+  }
+  .card_atras{
+    background: #f1f2f6;
+  }
+  .text{
+      $toolbar-ios-title-text-color: #FFF;
+  }
+}

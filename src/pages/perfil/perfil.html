@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <h3 text-center class="blanco"> Información del usuario </h3>
+  <ion-grid class="margen">
+      <ion-row>
+          <ion-col >
+              <img src="./assets/imgs/Logoblanco.png">
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  <ion-list no-lines class="margen_2">
+		  <ion-item text-center>
+        <img class="imagen_perfil" [src]="user.imagen">
+      </ion-item>
+    <ion-item>
+      <ion-icon name="arrow-dropright" item-start></ion-icon><h4>Nombre:</h4> {{user.nombre}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="at" item-start></ion-icon><h4>Correo:</h4>{{ user.email}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="leaf" item-start></ion-icon><h4>ID:</h4> {{user.uid}}
+    </ion-item>
+    <ion-item>
+      <ion-icon name="git-network" item-start></ion-icon><h4>Login:</h4> {{user.provider}}
+    </ion-item>
+
+    <ion-item>
+      <button ion-button (click)="salir()" color="danger" block>
+        Cerrar Sesión
+      </button>
+  </ion-item>
+
+	</ion-list>
+</ion-content>

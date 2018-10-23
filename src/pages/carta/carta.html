@@ -1,0 +1,52 @@
+ <!--
+  Generated template for the CartaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Carta Móvil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <!-- <ion-list *ngFor='let task of tasks | async'>
+    <ion-item>{{ task.name }}</ion-item>
+</ion-list> -->
+  <!--Barra de busqueda-->
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-card class="card_atras">
+
+    <ion-card-header class="card_atras">
+      <p class="blanco_1" text-center> Carta de bebidas </p>
+    </ion-card-header>
+    <ion-card-content class="card_atras">
+      <p class="blanco_2"> Puedes reservar tus bebidas antes y despues de tu reservación. </p>
+    </ion-card-content>
+
+   </ion-card>
+ <ion-card *ngFor='let item of items | async' class="card_atras">
+  <ion-card-content class="card_atras">
+      <img src="./assets/imgs/icons/champagne.png"/>
+      <ion-card-title class="blanco_1" text-center>
+        {{item.name}}
+      </ion-card-title>
+      <p class="blanco_2">{{item.category}}</p>
+    <ion-item class="card_atras">
+      <ion-icon name="ios-cash" item-start></ion-icon>
+        <p class="blanco_1"> Precio </p>
+      <ion-badge class="fon" item-end>{{item.price}}</ion-badge>
+    </ion-item>
+    <ion-item class="card_atras">
+      <ion-icon name="md-wine" item-start></ion-icon>
+        <a class="blanco_2">Reservar</a>
+      <ion-badge item-end></ion-badge>
+    </ion-item>
+  </ion-card-content>
+  </ion-card>
+</ion-content>

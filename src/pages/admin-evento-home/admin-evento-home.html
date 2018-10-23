@@ -1,0 +1,35 @@
+<!--
+  Generated template for the AdminEventoHomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Administración de eventos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="fondo_admin" padding>
+  <div class="centrar">
+    <ion-row>
+      <ion-col class="text-center">
+        <img height="150" width="200" src="./assets/imgs/home/Logoblanco.png">
+      </ion-col>
+    </ion-row>
+  </div>
+    <h6>Administra tus eventos</h6>
+  <ion-fab top left>
+      <button ion-fab color="light"><ion-icon name="arrow-dropright"></ion-icon></button>
+      <ion-fab-list side="right">
+        <button
+        ion-fab
+        (click)="mostrar_modal()">
+        <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab-list>
+    </ion-fab>
+</ion-content>
