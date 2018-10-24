@@ -1,7 +1,7 @@
 page-eventos {
-  ion-icon{
-    background-color: #eccc68;
-  }
+  // ion-icon{
+  //   color: #eccc68;
+  // }
   ion-content{
     background-image: url('../assets/imgs/fondoblanco2.png');
     background-repeat: no-repeat;
@@ -16,16 +16,17 @@ page-eventos {
     mask-size: contain;
     mask-position: 50% 50%;
     mask-repeat: no-repeat;
-    background: currentColor;
+    //background: currentColor;
     width: 1em;
     height: 1em;
     margin-right: 8px;
+
   }
 
-  .menu{
-    background:  #eccc68;
-    // color: #eccc68;
-  }
+  // .menu{
+  // //background:  #eccc68;
+  //  color: #eccc68;
+  // }
 
   ion-card .item{
     position: relative;
