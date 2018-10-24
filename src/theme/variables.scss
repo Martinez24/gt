@@ -77,6 +77,15 @@ background: #000;
   position: relative;
   border: none;
 }
+.fondo2{
+  background-image: url('../assets/imgs/fondo1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  position: relative;
+  border: none;
+}
 //termina tabs
 ion-menu {
 	.menu-content

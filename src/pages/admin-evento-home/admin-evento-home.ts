@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { ModalController, NavController } from 'ionic-angular';
 import { AdminEventoSubirPage } from "../admin-evento-subir/admin-evento-subir";
-
-/**
- * Generated class for the AdminEventoHomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AdminEventoDetailPage } from "../../pages/admin-evento-detail/admin-evento-detail";
+import { EventosServiceProvider } from "../../providers/eventos-service/eventos-service";
 
 
 @Component({
@@ -15,10 +10,26 @@ import { AdminEventoSubirPage } from "../admin-evento-subir/admin-evento-subir";
   templateUrl: 'admin-evento-home.html',
 })
 export class AdminEventoHomePage {
+    eventos =[];
 
-  constructor(private modalctrl: ModalController ) {
+   @ViewChild('myNav') nav: NavController;
+
+  constructor(private modalctrl: ModalController,
+              public navCtrl: NavController,
+              public eventoService: EventosServiceProvider ) {
+  //this.eventos = eventoService.getEventos();
+    eventoService.getEventos()
+                  .valueChanges().subscribe(eventos=>{
+                    console.log(eventos);
+                    this.eventos = eventos;
+                  });
   }
-
+  public goToDetail(id){
+    this.navCtrl.push(AdminEventoDetailPage, {id:id});
+  }
+  public createEvento(){
+    this.navCtrl.push(AdminEventoDetailPage, {id:0});
+  }
   mostrar_modal(){
     let modal = this.modalctrl.create( AdminEventoSubirPage );
     modal.present();

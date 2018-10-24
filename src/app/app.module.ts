@@ -14,12 +14,14 @@ import { CartaPage } from "../pages/carta/carta";
 import { HistorialPage } from "../pages/historial/historial";
 import { Reservacion_1Page } from "../pages/reservacion-1/reservacion-1";
 import { TabsPage } from "../pages/tabs/tabs";
+import { EventoDetallePage } from "../pages/evento-detalle/evento-detalle";
 //administrador
 import { AdminLoginPage } from "../pages/admin-login/admin-login";
 import { AdminHomePage } from "../pages/admin-home/admin-home";
 import { AdminUsersPage } from "../pages/admin-users/admin-users";
 import { AdminEventoHomePage } from "../pages/admin-evento-home/admin-evento-home";
 import { AdminEventoSubirPage } from "../pages/admin-evento-subir/admin-evento-subir";
+import { AdminEventoDetailPage } from "../pages/admin-evento-detail/admin-evento-detail";
 
 //Pipes
 import { PipesModule } from "../pipes/pipes.module";
@@ -33,6 +35,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 //providers
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
+import { EventosServiceProvider } from '../providers/eventos-service/eventos-service';
 
 //Plugins
 import { Facebook } from '@ionic-native/facebook';
@@ -69,7 +72,9 @@ export const firebaseConfig = {
     AdminHomePage,
     AdminUsersPage,
     AdminEventoHomePage,
-    AdminEventoSubirPage
+    AdminEventoSubirPage,
+    AdminEventoDetailPage,
+    EventoDetallePage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,9 @@ export const firebaseConfig = {
     AdminHomePage,
     AdminUsersPage,
     AdminEventoHomePage,
-    AdminEventoSubirPage
+    AdminEventoSubirPage,
+    AdminEventoDetailPage,
+    EventoDetallePage
   ],
   providers: [
     StatusBar,
@@ -110,7 +117,8 @@ export const firebaseConfig = {
     Camera,
     ImagePicker,
     SocialSharing,
-    CargaArchivoProvider
+    CargaArchivoProvider,
+    EventosServiceProvider
     //AuthService
   ]
 })

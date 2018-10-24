@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+
+import { EventoDetallePage } from "../../pages/evento-detalle/evento-detalle";
+
 
 //Plugins
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -18,7 +21,8 @@ export class EventosPage {
  //eventos: Observable<any[]>;
 
   constructor(private _cap: CargaArchivoProvider,
-              private socialSharing: SocialSharing
+              private socialSharing: SocialSharing,
+              public navCtrl: NavController
      //private afDB: AngularFireDatabase
   ) {
     // this.eventos = afDB.list('evento').valueChanges();
@@ -44,6 +48,8 @@ export class EventosPage {
       .catch( ()=>{} ) // si sucede un error
 
   }
-
+  verDetalle(key){
+    this.navCtrl.push(EventoDetallePage, {key:key});
+  }
 
 }

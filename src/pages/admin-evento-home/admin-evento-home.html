@@ -30,6 +30,31 @@
         (click)="mostrar_modal()">
         <ion-icon name="add"></ion-icon>
         </button>
+        <button
+        ion-fab
+        (click)="createEvento()">
+        <ion-icon name="custom-relog"></ion-icon>
+        </button>
       </ion-fab-list>
+
     </ion-fab>
+    <!-- Listado de eventos -->
+    <ion-list inset>
+      <button ion-item *ngFor="let evento of eventos" (click)="goToDetail(evento.id)">
+        {{ evento.title }}
+      </button>
+    </ion-list>
+    <!-- <ion-list inset>
+  <ion-item>
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      {{ item }}
+    </button>
+    <ion-avatar item-start>
+      <img src="img/avatar-finn.png">
+    </ion-avatar>
+    <h2>Finn</h2>
+    <h3>Don't Know What To Do!</h3>
+    <p>I've had a pretty messed up day. If we just...</p>
+  </ion-item>
+</ion-list> -->
 </ion-content>

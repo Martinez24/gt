@@ -111,6 +111,9 @@ mostrar_toast( mensaje: string ){
      duration: 3000
    }).present();
  }
+ public getEvento(id){
+    return this.afDB.object('evento/'+id);   
+ }
 }
 
 interface ArchivoSubir{
