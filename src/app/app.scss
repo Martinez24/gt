@@ -38,6 +38,8 @@ ion-icon {
   }
   &[class*="custom-facebook"] {
     mask-image: url(../../assets/imgs/icons/facebook.PNG);
-
+  }
+  &[class*="custom-user"] {
+    mask-image: url(../../assets/imgs/icons/profile.PNG);
   }
 }

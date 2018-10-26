@@ -18,23 +18,45 @@
 
   <ion-list no-lines class="margen_2">
 		  <ion-item text-center>
-        <img class="imagen_perfil" [src]="user.imagen">
+        <!--Filtro de bandera de usuario-->
+        <div class="filt">
+          <img class="cate" src="../assets/imgs/icons/gold_guest.png" item-start>
+        </div>
+        <!--Imagen del usuario-->
+        <div class="">
+          <img class="imagen_perfil" [src]="user.imagen">
+        </div>
       </ion-item>
     <ion-item>
-      <ion-icon name="arrow-dropright" item-start></ion-icon><h4>Nombre:</h4> {{user.nombre}}
+      <img class="icon" src="../assets/imgs/icons/profile.png" item-start><div class="margen3"><h4> Nombre:</h4> {{user.nombre}}</div>
     </ion-item>
     <ion-item>
-      <ion-icon name="at" item-start></ion-icon><h4>Correo:</h4>{{ user.email}}
+      <img class="icon" src="../assets/imgs/icons/correo.png" item-start><div class="margen3"><h4>Correo:</h4>{{ user.email}}</div>
     </ion-item>
     <ion-item>
-      <ion-icon name="leaf" item-start></ion-icon><h4>ID:</h4> {{user.uid}}
+      <img class="icon" src="../assets/imgs/icons/cumple.png" item-start><div class="margen3"><h4>Cumpleaños:</h4>xxxx-xx-xx</div>
     </ion-item>
     <ion-item>
-      <ion-icon name="git-network" item-start></ion-icon><h4>Login:</h4> {{user.provider}}
+    <img class="icon" src="../assets/imgs/icons/telefono.png" item-start><div class="margen3"><h4>Teléfono:</h4>477-532-45-98</div>
+  </ion-item>
+    <ion-item *ngIf="user.provider == 'facebook'">
+      <div class="margen3"><h4>Sesión:</h4>Facebook</div>
+        <img class="icon" src="../assets/imgs/icons/facebook.png" item-start>
+    </ion-item>
+    <ion-item *ngIf="user.provider == 'google'">
+      <div class="margen3"><h4>Sesión:</h4>Google</div>
+        <img class="icon" src="../assets/imgs/icons/google.png" item-start>
     </ion-item>
 
     <ion-item>
-      <button ion-button (click)="salir()" color="danger" block>
+      <div class="margen3"><h4>Tarjetas</h4>
+      </div>
+      <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
+      <ion-title>**** 5425</ion-title>
+      <ion-title>**** 6420</ion-title>
+    </ion-item>
+    <ion-item>
+      <button ion-button (click)="salir()" color="dark" block>
         Cerrar Sesión
       </button>
   </ion-item>
