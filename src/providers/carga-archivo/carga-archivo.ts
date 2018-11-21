@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { ToastController } from 'ionic-angular';
 
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import   "rxjs/add/operator/map";
 
 @Injectable()
 export class CargaArchivoProvider {
-
+  toast = "";
   imagenes: ArchivoSubir[] = [];
   lastKey: string = null;
+  eventoList: AngularFireList<any>;
 
   constructor(public toastCtrl: ToastController,
               public afDB: AngularFireDatabase  ) {
@@ -31,7 +32,7 @@ private cargar_ultimo_key(){
 cargar_imagenes(){
   return new Promise ((resolve, reject)=>{
     this.afDB.list('/evento',
-      ref=> ref.limitToLast(3)
+      ref=> ref.limitToLast(8)
                 .orderByKey()
                 .endAt(this.lastKey)
               ).valueChanges()
@@ -51,7 +52,7 @@ cargar_imagenes(){
             });
   });
 }
-cargar_imagen_firebase( archivo:ArchivoSubir,  ){
+cargar_imagen_firebase( archivo:ArchivoSubir  ){
 
   let promesa = new Promise( (resolve, reject)=>{
     this.mostrar_toast('Cargando..');
@@ -60,7 +61,7 @@ cargar_imagen_firebase( archivo:ArchivoSubir,  ){
     let nombreArchivo:string = new Date().valueOf().toString();
 
     let uploadTask: firebase.storage.UploadTask =
-   storeRef.child(`${ nombreArchivo }.jpg`)
+   storeRef.child(`evento/${ nombreArchivo }.jpg`)
    .putString( archivo.img, 'base64', { contentType: 'image/jpeg' } );
         uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
           ()=>{},//saber el % cuantos se han subido
@@ -82,7 +83,13 @@ cargar_imagen_firebase( archivo:ArchivoSubir,  ){
             console.log('nombreArchivo', nombreArchivo);
             console.log('url', url);
             console.log('file.titulo', archivo.titulo);
-            this.crear_post(archivo.titulo, url, nombreArchivo);
+            this.crear_post(archivo.titulo,
+                            archivo.fecha,
+                            archivo.hora,
+                            archivo.categoria,
+                            archivo.lugar,
+                            archivo.obs,
+                            url, nombreArchivo);
             resolve();
 });
         }
@@ -91,33 +98,58 @@ cargar_imagen_firebase( archivo:ArchivoSubir,  ){
   return promesa;
 }
 
-private crear_post( titulo:string, url: string, nombreArchivo:string){
+private crear_post( titulo:string,
+                    fecha: string,
+                    hora: string,
+                    categoria: string,
+                    lugar: string,
+                    obs: string,
+                    url: string,
+                    nombreArchivo:string){
   let evento: ArchivoSubir = {
     img:url,
     titulo: titulo,
+    fecha: fecha,
+    hora: hora,
+    categoria: categoria,
+    lugar: lugar,
+    obs: obs,
     key: nombreArchivo
   };
   console.log( JSON.stringify(evento));
   //this.afDB.list('/evento').push(evento);
-  this.afDB.object(`/evento/${ nombreArchivo }`).update(evento);
+  this.afDB.object(`evento/${ nombreArchivo }`).update(evento);
   this.imagenes.push( evento );
-
-
+  this.mostrar_toast('Evento grabado a BD');
 }
 
-mostrar_toast( mensaje: string ){
+mostrar_toast( mensaje: string,  ){
+  
   const toast = this.toastCtrl.create({
      message: mensaje,
      duration: 3000
    }).present();
  }
  public getEvento(id){
-    return this.afDB.object('evento/'+id);   
+    return this.afDB.object('evento/'+id);
+
+
  }
+ deleteEvento(key: string )
+{
+return this.afDB.database.ref('evento/'+key).remove();
+}
 }
 
-interface ArchivoSubir{
+
+
+export interface  ArchivoSubir{
   titulo:string;
+  fecha: string,
+  hora: string,
+  categoria: string,
+  lugar: string,
+  obs: string,
   img: string;
   key?: string;
 }

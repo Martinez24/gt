@@ -6,55 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Administración de eventos</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Administración de eventos</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="fondo_admin" padding>
-  <div class="centrar">
-    <ion-row>
-      <ion-col class="text-center">
-        <img height="150" width="200" src="./assets/imgs/home/Logo.png">
-      </ion-col>
-    </ion-row>
-  </div>
-    <h6>Administra tus eventos</h6>
-  <ion-fab top left>
-      <button ion-fab color="light"><ion-icon name="arrow-dropright"></ion-icon></button>
-      <ion-fab-list side="right">
-        <button
-        ion-fab
-        (click)="mostrar_modal()">
-        <ion-icon name="add"></ion-icon>
-        </button>
-        <button
-        ion-fab
-        (click)="createEvento()">
-        <ion-icon name="custom-relog"></ion-icon>
-        </button>
-      </ion-fab-list>
+
+
+    <ion-list>
+
+        <ion-list-header>
+            Administración de eventos
+        </ion-list-header>
+        <ion-item *ngFor="let evento of _cap.imagenes" (click)=" selectEventoItem(evento)">
+            <ion-avatar item-start>
+                <img [src]="evento.img">
+            </ion-avatar>
+            <h2>{{evento.titulo}}</h2>
+            <p>{{evento.categoria}}</p>
+        </ion-item>
+    </ion-list>
+    <ion-fab left bottom>
+        <button ion-fab color="light"><ion-icon name="arrow-dropright" ></ion-icon></button>
+        <ion-fab-list side="right">
+            <button ion-fab (click)="mostrar_modal()">
+            <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab-list>
 
     </ion-fab>
-    <!-- Listado de eventos -->
-    <ion-list inset>
-      <button ion-item *ngFor="let evento of eventos" (click)="goToDetail(evento.id)">
-        {{ evento.title }}
-      </button>
-    </ion-list>
-    <!-- <ion-list inset>
-  <ion-item>
-    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-      {{ item }}
-    </button>
-    <ion-avatar item-start>
-      <img src="img/avatar-finn.png">
-    </ion-avatar>
-    <h2>Finn</h2>
-    <h3>Don't Know What To Do!</h3>
-    <p>I've had a pretty messed up day. If we just...</p>
-  </ion-item>
-</ion-list> -->
+
+
 </ion-content>

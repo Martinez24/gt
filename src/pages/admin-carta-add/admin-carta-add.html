@@ -6,7 +6,7 @@
               Cerrar
             </button>
         </ion-buttons>
-        <ion-title>{{ titulo | placeHolder:'Crear nuevo evento' }}</ion-title>
+        <ion-title>{{ titulo | placeHolder:'Crear nuevo' }}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -19,25 +19,18 @@
             <ion-label floating>Titulo</ion-label>
             <ion-input type="text" [(ngModel)]="titulo"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-label>Fecha </ion-label>
-            <ion-input type="date" [(ngModel)]="fecha"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Hora</ion-label>
-            <ion-input type="time" [(ngModel)]="hora"></ion-input>
-        </ion-item>
+
         <ion-item>
             <ion-label floating>Categoria</ion-label>
             <ion-input type="text" [(ngModel)]="categoria"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Lugar</ion-label>
-            <ion-input type="text" [(ngModel)]="lugar"></ion-input>
+            <ion-label floating>Precio</ion-label>
+            <ion-input type="text" [(ngModel)]="precio"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Observaciones</ion-label>
-            <ion-input type="text" [(ngModel)]="obs"></ion-input>
+            <ion-label floating>Nota</ion-label>
+            <ion-input type="text" [(ngModel)]="nota"></ion-input>
         </ion-item>
         <ion-item *ngIf="imagenPreview">
             <img [src]="imagenPreview">

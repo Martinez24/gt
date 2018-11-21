@@ -93,6 +93,9 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="your usage message" />
     </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="5.4.1" />
+    <plugin name="cordova-android-play-services-gradle-release" spec="^2.0.0">
+        <variable name="PLAY_SERVICES_VERSION" value="11.6.2" />
+    </plugin>
     <engine name="android" spec="6.4.0" />
     <engine name="ios" spec="4.5.5" />
 </widget>

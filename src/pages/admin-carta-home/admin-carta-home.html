@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Carta CRUD</ion-title>
+
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="fondo_admin" padding>
+    <ion-fab left bottom>
+        <button ion-fab color="light"><ion-icon name="arrow-dropright"></ion-icon></button>
+        <ion-fab-list side="right">
+            <button ion-fab (click)="goCartaAdd()">
+          <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-fab-list>
+    </ion-fab>
+    <ion-list>
+        <ion-list-header>
+            Menú<br> Listado de bebidas
+        </ion-list-header>
+        <ion-item *ngFor="let cartaItem of cartaList" (click)="selectCartaItem(cartaItem)">
+            <h1> {{cartaItem.titulo }} </h1>
+            <h2> {{cartaItem.categoria}} </h2>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

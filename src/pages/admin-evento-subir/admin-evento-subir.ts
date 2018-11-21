@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+//import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
 import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo"
@@ -13,12 +13,17 @@ import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archiv
 export class AdminEventoSubirPage {
 
   titulo:string = "";
+  fecha: string = "";
+  hora: string = "";
+  categoria: string = "";
+  lugar: string = "";
+  obs: string = "";
   imagenPreview: string = "";
   imagen64: string = "";
 
 
   constructor( private viewCtrl: ViewController,
-                private camera: Camera,
+                //private camera: Camera,
                 private imagePicker: ImagePicker,
                 public _cap: CargaArchivoProvider) {
   }
@@ -26,24 +31,24 @@ export class AdminEventoSubirPage {
     this.viewCtrl.dismiss();
   }
 
-  mostrar_camara(){
-    const options: CameraOptions = {
-  quality: 100,
-  destinationType: this.camera.DestinationType.FILE_URI,
-  encodingType: this.camera.EncodingType.JPEG,
-  mediaType: this.camera.MediaType.PICTURE
-}
-
-this.camera.getPicture(options).then((imageData) => {
- // imageData is either a base64 encoded string or a file URI
- // If it's base64 (DATA_URL):
- this.imagenPreview = 'data:image/jpeg;base64,' + imageData;
- this.imagen64 = imageData;
-}, (err) => {
- // Handle error
- console.log( "Error en la camara", JSON.stringify(err));
-});
-  }
+//   mostrar_camara(){
+//     const options: CameraOptions = {
+//   quality: 100,
+//   destinationType: this.camera.DestinationType.FILE_URI,
+//   encodingType: this.camera.EncodingType.JPEG,
+//   mediaType: this.camera.MediaType.PICTURE
+// }
+//
+// this.camera.getPicture(options).then((imageData) => {
+//  // imageData is either a base64 encoded string or a file URI
+//  // If it's base64 (DATA_URL):
+//  this.imagenPreview = 'data:image/jpeg;base64,' + imageData;
+//  this.imagen64 = imageData;
+// }, (err) => {
+//  // Handle error
+//  console.log( "Error en la camara", JSON.stringify(err));
+// });
+//   }
 
   seleccionar_foto(){
     let opciones:ImagePickerOptions={
@@ -66,7 +71,12 @@ this.camera.getPicture(options).then((imageData) => {
   crear_post(){
     let archivo ={
       img: this.imagen64,
-      titulo: this.titulo
+      titulo: this.titulo,
+      fecha: this.fecha,
+      hora: this.hora,
+      categoria: this.categoria,
+      lugar: this.lugar,
+      obs: this.obs
     }
     this._cap.cargar_imagen_firebase(archivo)
     .then(()=>this.cerrar_modal());

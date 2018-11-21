@@ -22,6 +22,10 @@ import { AdminUsersPage } from "../pages/admin-users/admin-users";
 import { AdminEventoHomePage } from "../pages/admin-evento-home/admin-evento-home";
 import { AdminEventoSubirPage } from "../pages/admin-evento-subir/admin-evento-subir";
 import { AdminEventoDetailPage } from "../pages/admin-evento-detail/admin-evento-detail";
+import { AdminCartaHomePage } from "../pages/admin-carta-home/admin-carta-home";
+import { AdminCartaAddPage } from "../pages/admin-carta-add/admin-carta-add";
+import { AdminCartaEditPage } from '../pages/admin-carta-edit/admin-carta-edit';
+
 
 //Pipes
 import { PipesModule } from "../pipes/pipes.module";
@@ -36,6 +40,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 import { EventosServiceProvider } from '../providers/eventos-service/eventos-service';
+import { CartaAddProvider } from '../providers/carta-add/carta-add';
+import { ToastProvider } from '../providers/toast/toast';
+
 
 //Plugins
 import { Facebook } from '@ionic-native/facebook';
@@ -74,6 +81,9 @@ export const firebaseConfig = {
     AdminEventoHomePage,
     AdminEventoSubirPage,
     AdminEventoDetailPage,
+    AdminCartaHomePage,
+    AdminCartaAddPage,
+    AdminCartaEditPage,
     EventoDetallePage
   ],
   imports: [
@@ -102,6 +112,9 @@ export const firebaseConfig = {
     AdminEventoHomePage,
     AdminEventoSubirPage,
     AdminEventoDetailPage,
+    AdminCartaHomePage,
+    AdminCartaAddPage,
+    AdminCartaEditPage,
     EventoDetallePage
   ],
   providers: [
@@ -118,7 +131,9 @@ export const firebaseConfig = {
     ImagePicker,
     SocialSharing,
     CargaArchivoProvider,
-    EventosServiceProvider
+    EventosServiceProvider,
+    CartaAddProvider,
+    ToastProvider
     //AuthService
   ]
 })

@@ -5,6 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from "../../pages/login/login";
 import { AdminUsersPage } from "../../pages/admin-users/admin-users";
 import { AdminEventoHomePage } from "../../pages/admin-evento-home/admin-evento-home";
+import { AdminCartaHomePage } from '../../pages/admin-carta-home/admin-carta-home';
 
 
 
@@ -29,5 +30,8 @@ goUsers(){
 }
  goEventos(){
    this.navCtrl.push(AdminEventoHomePage);
+ }
+ goCarta(){
+   this.navCtrl.push(AdminCartaHomePage);
  }
 }
