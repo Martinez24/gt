@@ -2,15 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController} from 'ionic-angular';
 //Firebase
 import { AngularFireDatabase } from 'angularfire2/database';
-//import { Observable } from 'rxjs/Observable';
-import { Observable } from 'rxjs-compat';
+import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs-compat';
 //import { map } from 'rxjs-compat/operators';
-/**
- * Generated class for the CartaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CargaArchivoCartaProvider } from '../../providers/carga-archivo-carta/carga-archivo';
+
 
 @IonicPage()
 @Component({
@@ -19,12 +15,15 @@ import { Observable } from 'rxjs-compat';
 })
 export class CartaPage {
 
+  cartas: Observable<any[]>;
 
-    items: Observable<any[]>;
+   constructor(public navCtrl: NavController, 
+               public afDB: AngularFireDatabase,
+              private _cap: CargaArchivoCartaProvider) {
 
-   constructor(public navCtrl: NavController, afDB: AngularFireDatabase) {
-     this.items = afDB.list('products').valueChanges();
+     this.cartas = afDB.list('bebidas').valueChanges();
    }
+   
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartaPage');

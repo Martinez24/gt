@@ -1,42 +1,38 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Eventos</ion-title>
-  </ion-navbar>
+        <ion-title>Eventos</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="card-background-page">
-  <ion-card class="card_atras" *ngFor="let evento of _cap.imagenes">
-   <img [src]="evento.img"/>
- <ion-row>
-  <ion-title color="light">{{ evento.titulo }}</ion-title>
-  <ion-row>
-            <ion-col mr-5 text-right>
-                <button ion-button clear small color="light" icon-left
-                        (click)="compartir(evento)">
+    <ion-card class="card_atras" *ngFor="let evento of eventos | async">
+        <img [src]="evento.img" />
+        <ion-row>
+            <ion-title color="light">{{ evento.titulo }}</ion-title>
+            <ion-row>
+                <ion-col mr-5 text-right>
+                    <button ion-button clear small color="light" icon-left (click)="compartir(evento)">
                     <img class="icon" src="../assets/imgs/icons/facebook.png">
                      Compartir
                   </button>
 
-            </ion-col>
-        </ion-row>
-    <ion-col text-right>
-          <button (click)="verDetalle(evento.key)" text-align ion-button clear small color="light"
-              icon-left>
+                </ion-col>
+            </ion-row>
+            <ion-col text-right>
+                <button (click)="verDetalle(evento.key)" text-align ion-button clear small color="light" icon-left>
               <img class="icon" src="../assets/imgs/icons/mas.png">
                 Más
           </button>
-    </ion-col>
-   </ion-row>
-  </ion-card>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)"
-                        [enabled]="hayMas">
-     <ion-infinite-scroll-content></ion-infinite-scroll-content>
-   </ion-infinite-scroll>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hayMas">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

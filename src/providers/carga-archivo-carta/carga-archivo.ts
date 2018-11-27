@@ -2,56 +2,54 @@ import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
-import   "rxjs/add/operator/map";
-import { Observable } from 'rxjs-compat';
 import { ArchivoSubir } from './ArchivoSubir';
+//import   "rxjs/add/operator/map";
+//import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class CargaArchivoProvider {
+export class CargaArchivoCartaProvider {
   
-  selectedEventoItem: ArchivoSubir = new ArchivoSubir();
+  
+  
+  selectedProduct: ArchivoSubir = new ArchivoSubir();  
 
   imagenes: ArchivoSubir[] = [];
-  eventos: Observable<any[]>;
-  //lastKey: string = null;
-
+  //lastKey: string = null;  
+  //private cartaList: Observable<ArchivoSubir>;
+  //private cartaList = this.afDB.list<ArchivoSubir>('bebidas');  
 
   constructor(public toastCtrl: ToastController,
-              //public navCtrl: NavController,              
-              public afDB: AngularFireDatabase,
-               ) {
-    // this.cargar_ultimo_key()
-    //     .subscribe(()=>this.cargar_imagenes());
+              public afDB: AngularFireDatabase  ) {
+            // this.cargar_ultimo_key()
+      //     .subscribe(()=>this.cargar_imagenes());
 
   }
 // private cargar_ultimo_key(){
-//   return this.afDB.list('/evento', ref=> ref.orderByKey().limitToLast(1))
+//   return this.afDB.list('/bebidas', ref=> ref.orderByKey().limitToLast(1))
 //             .valueChanges()
-//             .map( (evento:any) => {
-//               this.lastKey = evento[0].key;
-//               this.imagenes.push( evento[0]);
+//             .map( (bebida:any) => {
+//               this.lastKey = bebida[0].key;
+//               this.imagenes.push( bebida[0]);
 //             });
-
-
-// }
+//}
 // cargar_imagenes(){
 //   return new Promise ((resolve, reject)=>{
-//     this.afDB.list('/evento',
+//     this.afDB.list('/bebidas',
 //       ref=> ref.limitToLast(8)
 //                 .orderByKey()
 //                 .endAt(this.lastKey)
 //               ).valueChanges()
-//                .subscribe((eventos:any)=>{
-//                  eventos.pop();
-//               if( eventos.length == 0){
+//                .subscribe((bebidas:any)=>{
+//                  bebidas.pop();
+//               if( bebidas.length == 0){
 //                 console.log('Ya no hay más registros');
 //                 resolve(false);
 //                 return;
 //               }
-//               this.lastKey = eventos[0].key;
-//               for( let i = eventos.length-1; i>=0; i--){
-//                 let evento = eventos[i];
-//                 this.imagenes.push(evento);
+//               this.lastKey = bebidas[0].key;
+//               for( let i = bebidas.length-1; i>=0; i--){
+//                 let bebida = bebidas[i];
+//                 this.imagenes.push(bebida);
 //               }
 //               resolve(true);
 //             });
@@ -66,7 +64,7 @@ cargar_imagen_firebase( archivo:ArchivoSubir  ){
     let nombreArchivo:string = new Date().valueOf().toString();
 
     let uploadTask: firebase.storage.UploadTask =
-   storeRef.child(`evento/${ nombreArchivo }.jpg`)
+   storeRef.child(`bebidas/${ nombreArchivo }.jpg`)
    .putString( archivo.img, 'base64', { contentType: 'image/jpeg' } );
         uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
           ()=>{},//saber el % cuantos se han subido
@@ -89,11 +87,9 @@ cargar_imagen_firebase( archivo:ArchivoSubir  ){
             console.log('url', url);
             console.log('file.titulo', archivo.titulo);
             this.crear_post(archivo.titulo,
-                            archivo.fecha,
-                            archivo.hora,
                             archivo.categoria,
-                            archivo.lugar,
-                            archivo.obs,
+                            archivo.precio,
+                            archivo.nota,
                             url, nombreArchivo);
             resolve();
 });
@@ -104,39 +100,30 @@ cargar_imagen_firebase( archivo:ArchivoSubir  ){
 }
 
 private crear_post( titulo:string,
-                    fecha: string,
-                    hora: string,
                     categoria: string,
-                    lugar: string,
-                    obs: string,
+                    precio: string,
+                    nota: string,
                     url: string,
                     nombreArchivo:string){
-  let evento: ArchivoSubir = {
+  let bebida: ArchivoSubir = {
     img:url,
     titulo: titulo,
-    fecha: fecha,
-    hora: hora,
     categoria: categoria,
-    lugar: lugar,
-    obs: obs,
+    precio: precio,
+    nota: nota,
     key: nombreArchivo
   };
-  console.log( JSON.stringify(evento));
+  console.log( JSON.stringify(bebida));
   //this.afDB.list('/evento').push(evento);
-  this.afDB.object(`evento/${ nombreArchivo }`).update(evento);
-  this.imagenes.push( evento );
+  this.afDB.object(`bebidas/${ nombreArchivo }`).update(bebida);
+  this.imagenes.push( bebida );
   this.mostrar_toast('Evento grabado a BD');
 }
 
-
- public getEvento(id){
-    return this.afDB.object('evento/'+id);
- }
-
- deleteEvento(key: string, img: string)
+deleteCarta(key: string, img: string)
 {
 var storeRef = firebase.storage().ref();
-var desertRef = storeRef.child(`evento/${ img }.jpg`);
+var desertRef = storeRef.child(`bebidas/${ img }.jpg`);
 console.log(img);
 
 // Delete the file
@@ -145,22 +132,27 @@ desertRef.delete().then(function() {
 }).catch(function(error) {
   // Uh-oh, an error occurred!
 });
-this.afDB.database.ref('evento/'+key).remove();       
+this.afDB.database.ref('bebidas/'+key).remove();   
+    
 }
-
-updateEvento(data)
+updateCarta(data)
   {
     console.log(data.KEY);
-    this.afDB.database.ref('evento/'+data.KEY).update(data);
+    this.afDB.database.ref('bebidas/'+data.KEY).update(data);
   }
 
-mostrar_toast( mensaje: string,  ){
+
+mostrar_toast( mensaje: string  ){
   
   const toast = this.toastCtrl.create({
      message: mensaje,
      duration: 3000
    }).present();
  }
+ public getEvento(id){
+    return this.afDB.object('bebidas/'+id);
+ }
+ 
 }
 
 

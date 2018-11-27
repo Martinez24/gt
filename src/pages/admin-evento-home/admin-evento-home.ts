@@ -2,8 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalController, NavController, ActionSheetController } from 'ionic-angular';
 import { AdminEventoSubirPage } from "../admin-evento-subir/admin-evento-subir";
 import { EventosServiceProvider } from "../../providers/eventos-service/eventos-service";
-import { CargaArchivoProvider, ArchivoSubir } from "../../providers/carga-archivo/carga-archivo";
+import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo";
+import { ArchivoSubir } from "../../providers/carga-archivo/ArchivoSubir";
 import { ToastProvider } from '../../providers/toast/toast';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AdminEventoEditPage } from '../../pages/admin-evento-edit/admin-evento-edit';
+
+
 
 
 
@@ -12,8 +18,8 @@ import { ToastProvider } from '../../providers/toast/toast';
   templateUrl: 'admin-evento-home.html',
 })
 export class AdminEventoHomePage {
-  hayMas:boolean= true;
-
+  //hayMas:boolean= true;
+  eventos: Observable<any[]>
    @ViewChild('myNav') nav: NavController;
 
   constructor(private modalctrl: ModalController,
@@ -21,21 +27,23 @@ export class AdminEventoHomePage {
               public eventoService: EventosServiceProvider,
               private actionSheet: ActionSheetController,
               private toastCtrl: ToastProvider,
-              public _cap: CargaArchivoProvider
+              public _cap: CargaArchivoProvider,
+              public afDB: AngularFireDatabase
               ) {
   
+  this.eventos = afDB.list('evento').valueChanges();
    
   }
-  doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
-    this._cap.cargar_imagenes().then(
-      (hayMas:boolean)=>{
-        console.log(hayMas);
-        this.hayMas = hayMas;
-        infiniteScroll.complete();
-      }
-    );
-  }
+  // doInfinite(infiniteScroll) {
+  //   console.log('Begin async operation');
+  //   this._cap.cargar_imagenes().then(
+  //     (hayMas:boolean)=>{
+  //       console.log(hayMas);
+  //       this.hayMas = hayMas;
+  //       infiniteScroll.complete();
+  //     }
+  //   );
+  // }
   mostrar_modal(){
     let modal = this.modalctrl.create( AdminEventoSubirPage );
     modal.present();
@@ -52,9 +60,9 @@ export class AdminEventoHomePage {
         {
           text: 'Editar',
           handler:()=>{
-          //this.navCtrl.push(AdminCartaEditPage,this.PrCa.selectedProduct= Object.assign({}, cartaItem));
-           //this.navParams.get("cartaItem: cartaItem"));
-          
+            this.navCtrl.push(AdminEventoEditPage,this._cap.selectedEventoItem= Object.assign({}, eventoItem));
+            console.log(eventoItem);
+                     
           }
         },
         {
@@ -62,8 +70,8 @@ export class AdminEventoHomePage {
         role: 'destructive',
         handler: () =>{
           //Delete the currente CartaItem
-        if(confirm('Are you sure delete this item?')){
-          this._cap.deleteEvento(eventoItem.key);
+        if(confirm('¿Estás seguro de eliminar este registro?')){
+          this._cap.deleteEvento( eventoItem.key, eventoItem.img);
           this.toastCtrl.show(`${eventoItem.titulo} deleted`);
             
         }

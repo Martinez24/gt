@@ -21,10 +21,10 @@ import { AdminHomePage } from "../pages/admin-home/admin-home";
 import { AdminUsersPage } from "../pages/admin-users/admin-users";
 import { AdminEventoHomePage } from "../pages/admin-evento-home/admin-evento-home";
 import { AdminEventoSubirPage } from "../pages/admin-evento-subir/admin-evento-subir";
-import { AdminEventoDetailPage } from "../pages/admin-evento-detail/admin-evento-detail";
+import { AdminEventoEditPage } from '../pages/admin-evento-edit/admin-evento-edit';
 import { AdminCartaHomePage } from "../pages/admin-carta-home/admin-carta-home";
-import { AdminCartaAddPage } from "../pages/admin-carta-add/admin-carta-add";
 import { AdminCartaEditPage } from '../pages/admin-carta-edit/admin-carta-edit';
+import { AdminCartaSubirPage } from '../pages/admin-carta-subir/admin-evento-subir';
 
 
 //Pipes
@@ -42,6 +42,7 @@ import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 import { EventosServiceProvider } from '../providers/eventos-service/eventos-service';
 import { CartaAddProvider } from '../providers/carta-add/carta-add';
 import { ToastProvider } from '../providers/toast/toast';
+import { CargaArchivoCartaProvider } from '../providers/carga-archivo-carta/carga-archivo';
 
 
 //Plugins
@@ -49,7 +50,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AuthProvider } from '../providers/auth/auth';
 import { UserProvider } from '../providers/user/user';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+//import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -80,11 +81,12 @@ export const firebaseConfig = {
     AdminUsersPage,
     AdminEventoHomePage,
     AdminEventoSubirPage,
-    AdminEventoDetailPage,
     AdminCartaHomePage,
-    AdminCartaAddPage,
+    AdminCartaSubirPage,
     AdminCartaEditPage,
-    EventoDetallePage
+    AdminEventoEditPage,
+    EventoDetallePage,
+    
   ],
   imports: [
     BrowserModule,
@@ -111,10 +113,10 @@ export const firebaseConfig = {
     AdminUsersPage,
     AdminEventoHomePage,
     AdminEventoSubirPage,
-    AdminEventoDetailPage,
+    AdminEventoEditPage,
     AdminCartaHomePage,
-    AdminCartaAddPage,
     AdminCartaEditPage,
+    AdminCartaSubirPage,
     EventoDetallePage
   ],
   providers: [
@@ -127,13 +129,14 @@ export const firebaseConfig = {
     GooglePlus,
     AuthProvider,
     UserProvider,
-    Camera,
+    //Camera,
     ImagePicker,
     SocialSharing,
     CargaArchivoProvider,
     EventosServiceProvider,
     CartaAddProvider,
-    ToastProvider
+    ToastProvider,
+    CargaArchivoCartaProvider
     //AuthService
   ]
 })

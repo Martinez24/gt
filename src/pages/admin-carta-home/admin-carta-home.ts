@@ -1,13 +1,17 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
-import { AdminCartaAddPage } from "../admin-carta-add/admin-carta-add";
-
-//import { AngularFireDatabase } from "angularfire2/database";
-//import { Observable } from 'rxjs/Observable';
-import { CartaAddProvider } from '../../providers/carta-add/carta-add';
+//import { AdminCartaAddPage } from "../admin-carta-add/admin-carta-add";
+//import { CartaItem } from '../../providers/carta-add/CartaItem';
+import { AngularFireDatabase } from "angularfire2/database";
+import { Observable } from 'rxjs/Observable';
+//import { CartaAddProvider } from '../../providers/carta-add/carta-add';
 import { AdminCartaEditPage } from '../admin-carta-edit/admin-carta-edit';
 import { ToastProvider } from '../../providers/toast/toast';
-import { CartaItem } from '../../providers/carta-add/CartaItem';
+import { AdminCartaSubirPage } from '../admin-carta-subir/admin-evento-subir';
+import { CargaArchivoCartaProvider } from '../../providers/carga-archivo-carta/carga-archivo';
+import { ArchivoSubir } from "../../providers/carga-archivo-carta/ArchivoSubir";
+
+
 
 
 
@@ -17,52 +21,30 @@ import { CartaItem } from '../../providers/carta-add/CartaItem';
   templateUrl: 'admin-carta-home.html',
 })
 export class AdminCartaHomePage {
-  
+    cartas: Observable<any[]>
+    //hayMas:boolean= true;
     //cartaList$: Observable<CartaItem[]>;
-
-    cartaList: CartaItem[];
+    //cartaList: CartaItem[];
 
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              //private DB: AngularFireDatabase,
+              public _cap: CargaArchivoCartaProvider,
+              //private PrCa: CartaAddProvider,
+              private DB: AngularFireDatabase,
               private actionSheet: ActionSheetController,
-              private PrCa: CartaAddProvider,
-              private toastCtrl: ToastProvider) {
-      /*
-        Listado de la tabla en firebase
-      */
-                this.PrCa.getCarta()
-                    .snapshotChanges()
-                    .subscribe(item => {
-                      this.cartaList = [];
-                      item.forEach(element =>{
-                        let x = element.payload.toJSON();
-                        x["$key"] = element.key;
-                        this.cartaList.push(x as CartaItem);
-                      })
-                    })
-      // this.cartaList$ = this.PrCa
-      //     .getCarta() //DB list
-      //     .snapshotChanges() // key and value
-      //     .map(
-      //       changes =>{
-      //         return changes.map(c => ({
-      //           key: c.payload.key, ...c.payload.val()
-      //         }));
-      //       }
-      //     );
-  }
+              private toastCtrl: ToastProvider) 
+              { 
+              this.cartas = DB.list('bebidas').valueChanges();
+              }  
  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminCartaHomePage');
-  }
-  //Go to the admin-carta-add
+  //Go to the admin-carta-subir
   goCartaAdd(){
-    this.navCtrl.push(AdminCartaAddPage);
+    this.navCtrl.push(AdminCartaSubirPage);
+    
   }
   
-  selectCartaItem(cartaItem: CartaItem){
+  selectCartaItem(cartaItem: ArchivoSubir){
     /* Display an action that gives the user the following options
       1.Edit 
       2. Delete
@@ -74,9 +56,9 @@ export class AdminCartaHomePage {
         {
           text: 'Editar',
           handler:()=>{
-          this.navCtrl.push(AdminCartaEditPage,this.PrCa.selectedProduct= Object.assign({}, cartaItem));
-           //this.navParams.get("cartaItem: cartaItem"));
-          
+          this.navCtrl.push(AdminCartaEditPage,this._cap.selectedProduct= Object.assign({}, cartaItem));
+          //this.navParams.get("cartaItem: cartaItem");
+          //console.log(cartaItem);          
           }
         },
         {
@@ -84,8 +66,8 @@ export class AdminCartaHomePage {
         role: 'destructive',
         handler: () =>{
           //Delete the currente CartaItem
-        if(confirm('Are you sure delete this item?')){
-          this.PrCa.deleteCarta(cartaItem.$key);
+        if(confirm('¿Estás seguro de eliminar este registro?')){
+          this._cap.deleteCarta(cartaItem.key, cartaItem.img);
           this.toastCtrl.show(`${cartaItem.titulo} deleted`);
         }
         }

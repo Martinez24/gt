@@ -21,9 +21,12 @@
         <ion-list-header>
             Menú<br> Listado de bebidas
         </ion-list-header>
-        <ion-item *ngFor="let cartaItem of cartaList" (click)="selectCartaItem(cartaItem)">
-            <h1> {{cartaItem.titulo }} </h1>
-            <h2> {{cartaItem.categoria}} </h2>
+        <ion-item *ngFor="let cartaItem of cartas | async" (click)="selectCartaItem(cartaItem)">
+            <ion-avatar item-start>
+                <img [src]="cartaItem.img">
+            </ion-avatar>
+            <h2>{{cartaItem.titulo}}</h2>
+            <p>{{cartaItem.categoria}}</p>
         </ion-item>
     </ion-list>
 

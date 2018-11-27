@@ -35,9 +35,8 @@
             <ion-label floating>Lugar</ion-label>
             <ion-input type="text" [(ngModel)]="lugar"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-label floating>Observaciones</ion-label>
-            <ion-input type="text" [(ngModel)]="obs"></ion-input>
+        <ion-item class="fond">
+            <ion-textarea class="fond" placeholder="Descripción" [(ngModel)]="obs" name="obs" autocomplete="on" autocorrect="on"></ion-textarea>
         </ion-item>
         <ion-item *ngIf="imagenPreview">
             <img [src]="imagenPreview">
