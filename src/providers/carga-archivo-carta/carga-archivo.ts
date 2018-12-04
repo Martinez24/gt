@@ -143,7 +143,7 @@ updateCarta(data)
 
 
 mostrar_toast( mensaje: string  ){
-  
+
   const toast = this.toastCtrl.create({
      message: mensaje,
      duration: 3000

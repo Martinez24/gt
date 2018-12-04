@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from "../../pages/login/login";
-import { AdminUsersPage } from "../../pages/admin-users/admin-users";
 import { AdminEventoHomePage } from "../../pages/admin-evento-home/admin-evento-home";
 import { AdminCartaHomePage } from '../../pages/admin-carta-home/admin-carta-home';
+import { AdminUsersListPage } from '../admin-users-list/admin-users-list';
+//import { AdminUsersPage } from "../../pages/admin-users/admin-users";
 
 
 
@@ -26,7 +27,7 @@ export class AdminHomePage {
   	this.navCtrl.setRoot(LoginPage);
   }
 goUsers(){
-  this.navCtrl.push(AdminUsersPage);
+  this.navCtrl.push(AdminUsersListPage);
 }
  goEventos(){
    this.navCtrl.push(AdminEventoHomePage);

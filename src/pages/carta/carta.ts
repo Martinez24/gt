@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 //import { Observable } from 'rxjs-compat';
 //import { map } from 'rxjs-compat/operators';
-import { CargaArchivoCartaProvider } from '../../providers/carga-archivo-carta/carga-archivo';
+//import { CargaArchivoCartaProvider } from '../../providers/carga-archivo-carta/carga-archivo';
 
 
 @IonicPage()
@@ -19,7 +19,8 @@ export class CartaPage {
 
    constructor(public navCtrl: NavController, 
                public afDB: AngularFireDatabase,
-              private _cap: CargaArchivoCartaProvider) {
+              //private _cap: CargaArchivoCartaProvider
+              ) {
 
      this.cartas = afDB.list('bebidas').valueChanges();
    }

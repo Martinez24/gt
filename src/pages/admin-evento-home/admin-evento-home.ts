@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalController, NavController, ActionSheetController } from 'ionic-angular';
 import { AdminEventoSubirPage } from "../admin-evento-subir/admin-evento-subir";
-import { EventosServiceProvider } from "../../providers/eventos-service/eventos-service";
 import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo";
 import { ArchivoSubir } from "../../providers/carga-archivo/ArchivoSubir";
 import { ToastProvider } from '../../providers/toast/toast';
@@ -9,12 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AdminEventoEditPage } from '../../pages/admin-evento-edit/admin-evento-edit';
 
-
-
-
-
 @Component({
-  selector: 'page-admin-evento-home',
+  selector: 'page-admin-evento-home',  
   templateUrl: 'admin-evento-home.html',
 })
 export class AdminEventoHomePage {
@@ -24,7 +19,6 @@ export class AdminEventoHomePage {
 
   constructor(private modalctrl: ModalController,
               public navCtrl: NavController,
-              public eventoService: EventosServiceProvider,
               private actionSheet: ActionSheetController,
               private toastCtrl: ToastProvider,
               public _cap: CargaArchivoProvider,

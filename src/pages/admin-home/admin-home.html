@@ -5,47 +5,48 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home Admin</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Home Admin</ion-title>
+    </ion-navbar>
 </ion-header>
-<ion-content class="fondo_admin" padding>
-  <div class="centrar">
-    <ion-row>
-<ion-col class="text-center">
-    <img height="150" width="200" src="./assets/imgs/home/Logo.png">
-</ion-col>
-</ion-row></div>
-  <ion-list class="atras">
-    <button class="atras" ion-item (click)="goUsers()" icon-start>
+<ion-content class="fondo_admin">
+    <div class="centrar">
+        <ion-row>
+            <ion-col class="text-center">
+                <img height="150" width="200" src="./assets/imgs/home/Logo.png">
+            </ion-col>
+        </ion-row>
+    </div>
+    <ion-list class="atras">
+        <button class="atras" ion-item (click)="goUsers()" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/admin-user.png"> </ion-icon>
       Administración de usuarios
     </button>
-      <button class="atras" ion-item (click)="goCarta()" icon-start>
+        <button class="atras" ion-item (click)="goCarta()" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/admin-carta.png"> </ion-icon>
       Administrar Carta Móvil
     </button>
-    <button class="atras" ion-item (click)="goEventos()" icon-start>
+        <button class="atras" ion-item (click)="goEventos()" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/admin-evento.png"> </ion-icon>
       Administrar Eventos
     </button>
-    <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
+        <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/book.png"> </ion-icon>
       Administrar Historia
     </button>
-    <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
+        <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/admin-historial.png"> </ion-icon>
       Historial de usuarios
     </button>
-    <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
+        <button class="atras" ion-item (click)="openNavDetailsPage(item)" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/corona.png"> </ion-icon>
       Administrar Reservaciones
     </button>
-    <button class="atras" ion-item (click)="logout()" icon-start>
+        <button class="atras" ion-item (click)="logout()" icon-start>
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/turn-off.png"> </ion-icon>
       Cerrar Sesión
     </button>
-  </ion-list>
+    </ion-list>
 
 
 

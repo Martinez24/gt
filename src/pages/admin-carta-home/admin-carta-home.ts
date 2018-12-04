@@ -31,7 +31,7 @@ export class AdminCartaHomePage {
               public navParams: NavParams,
               public _cap: CargaArchivoCartaProvider,
               //private PrCa: CartaAddProvider,
-              private DB: AngularFireDatabase,
+              public DB: AngularFireDatabase,
               private actionSheet: ActionSheetController,
               private toastCtrl: ToastProvider) 
               { 

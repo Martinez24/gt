@@ -19,6 +19,7 @@ firedata = firebase.database().ref('/users');
                       this.afiredatabase.list('/users/').update(this.afireauth.auth.currentUser.uid, {
                           uid : this.afireauth.auth.currentUser.uid,
                           displayName : newuser.name,
+                          type: newuser.type
                       }).then((res)=>{
                           console.log(res)
                           resolve({ success: true });
@@ -33,4 +34,12 @@ firedata = firebase.database().ref('/users');
               })
           })
       }
+deleteUser(){
+   var user = firebase.auth().currentUser;
+   user.delete().then(function(){
+       //usuario borrado
+   }).catch(function(error){
+    //Un error ocurrio
+   }) 
+}
 }

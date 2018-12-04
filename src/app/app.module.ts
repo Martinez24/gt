@@ -24,8 +24,11 @@ import { AdminEventoSubirPage } from "../pages/admin-evento-subir/admin-evento-s
 import { AdminEventoEditPage } from '../pages/admin-evento-edit/admin-evento-edit';
 import { AdminCartaHomePage } from "../pages/admin-carta-home/admin-carta-home";
 import { AdminCartaEditPage } from '../pages/admin-carta-edit/admin-carta-edit';
+import { AdminUsersListPage } from '../pages/admin-users-list/admin-users-list';
+import { AdminUserUserPage } from '../pages/admin-user-user/admin-user-user';
 import { AdminCartaSubirPage } from '../pages/admin-carta-subir/admin-evento-subir';
-
+import { AdminUsersGuestPage } from '../pages/admin-users-guest/admin-users-guest';
+import { AdminUserDetailPage } from '../pages/admin-user-detail/admin-user-detail';
 
 //Pipes
 import { PipesModule } from "../pipes/pipes.module";
@@ -39,7 +42,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 //providers
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
-import { EventosServiceProvider } from '../providers/eventos-service/eventos-service';
 import { CartaAddProvider } from '../providers/carta-add/carta-add';
 import { ToastProvider } from '../providers/toast/toast';
 import { CargaArchivoCartaProvider } from '../providers/carga-archivo-carta/carga-archivo';
@@ -53,6 +55,7 @@ import { UserProvider } from '../providers/user/user';
 //import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 
 export const firebaseConfig = {
@@ -85,6 +88,10 @@ export const firebaseConfig = {
     AdminCartaSubirPage,
     AdminCartaEditPage,
     AdminEventoEditPage,
+    AdminUsersListPage,
+    AdminUsersGuestPage,
+    AdminUserUserPage,
+    AdminUserDetailPage,
     EventoDetallePage,
     
   ],
@@ -117,6 +124,10 @@ export const firebaseConfig = {
     AdminCartaHomePage,
     AdminCartaEditPage,
     AdminCartaSubirPage,
+    AdminUsersListPage,
+    AdminUsersGuestPage,
+    AdminUserUserPage,
+    AdminUserDetailPage,
     EventoDetallePage
   ],
   providers: [
@@ -133,7 +144,6 @@ export const firebaseConfig = {
     ImagePicker,
     SocialSharing,
     CargaArchivoProvider,
-    EventosServiceProvider,
     CartaAddProvider,
     ToastProvider,
     CargaArchivoCartaProvider

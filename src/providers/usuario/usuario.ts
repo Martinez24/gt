@@ -1,5 +1,8 @@
 
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import firebase from 'firebase';
 
 /*
   Generated class for the UsuarioProvider provider.
@@ -10,9 +13,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UsuarioProvider {
 
+
 usuario: Credenciales = {};
 
-  constructor() { }
+  constructor(
+              public afDB: AngularFireDatabase,
+              public afireauth: AngularFireAuth
+            ) { }
 
   cargarUsuario(nombre:string,
                 email:string,
@@ -26,8 +33,11 @@ usuario: Credenciales = {};
               this.usuario.provider = provider; 
                 }
 
+                public getUser(uid){
+                return this.afDB.object('users_user/'+uid);
+                }
 }
-
+ 
 export interface Credenciales {
   nombre?:string;
   email?:string;

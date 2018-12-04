@@ -22,7 +22,7 @@ export class EventosPage {
   constructor(//private _cap: CargaArchivoProvider,
               private socialSharing: SocialSharing,
               public navCtrl: NavController,
-              private afDB: AngularFireDatabase
+              public afDB: AngularFireDatabase
   ) {
      this.eventos = afDB.list('evento').valueChanges();
   }
@@ -41,5 +41,6 @@ export class EventosPage {
   verDetalle(key){
     this.navCtrl.push(EventoDetallePage, {key:key});
   }
+  
 
 }

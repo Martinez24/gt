@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { AngularFireDatabase } from "angularfire2/database";
 import { CartaItem } from './CartaItem';
 //import { ToastController } from 'ionic-angular';
 //import { Observable } from 'rxjs/Observable';

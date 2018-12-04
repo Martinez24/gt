@@ -13,6 +13,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { AdminLoginPage } from "../../pages/admin-login/admin-login";
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 @IonicPage()
@@ -21,13 +22,17 @@ import { AdminLoginPage } from "../../pages/admin-login/admin-login";
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  firedata = firebase.database().ref('/users_user');
+
   pageLogin="admin-login";
   constructor(public navCtrl: NavController,
               private afAuth: AngularFireAuth,
               public usuarioProv: UsuarioProvider,
               private fb: Facebook,
               private googlePlus: GooglePlus,
-              private platform: Platform) {
+              private platform: Platform,
+              public afiredatabase: AngularFireDatabase
+              ) {
   }
 
   signInGoogle()  {
@@ -45,6 +50,13 @@ export class LoginPage {
               user.uid,
               'google'
             );
+            this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+              uid: this.usuarioProv.usuario.uid,
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL,
+              provider: 'google'
+            });
             this.navCtrl.setRoot(TabsPage);
           })
           .catch( error => console.log("Firebase failure: " + JSON.stringify(error)));
@@ -65,7 +77,15 @@ export class LoginPage {
             user.photoURL,
             user.uid,
             'facebook'
+          
           );
+          this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+            uid: this.usuarioProv.usuario.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            provider: 'facebook'
+          });
           this.navCtrl.setRoot(TabsPage);
 
         }).catch(e => console.log('Error de autenticación' + JSON.stringify(e)));
@@ -86,6 +106,13 @@ export class LoginPage {
           user.uid,
           'facebook'
         );
+        this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+          uid: this.usuarioProv.usuario.uid,
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          provider: 'facebook'
+        });
         this.navCtrl.setRoot(TabsPage);
       });
     }
