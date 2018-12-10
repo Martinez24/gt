@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AdminUserDetailPage } from '../admin-user-detail/admin-user-detail';
+import { UsuarioProvider } from "../../providers/usuario/usuario";
+import firebase from 'firebase';
 
 /**
  * Generated class for the AdminUserUserPage page.
@@ -23,9 +25,10 @@ export class AdminUserUserPage {
     public navCtrl: NavController,
      public navParams: NavParams,
      public DB: AngularFireDatabase,
-     public actionSheet: ActionSheetController
+     public actionSheet: ActionSheetController,
+     public _up: UsuarioProvider
      ) {
-    this.users = this.DB.list('users_user').valueChanges();
+    this.users = this.DB.list('users').valueChanges();
   }
 
   ionViewDidLoad() {
@@ -36,28 +39,20 @@ export class AdminUserUserPage {
       title: 'Acciones',
       buttons:[
         {
-          text: 'Ver Más',
+          text: 'Ver más',
           handler:()=>{
             this.navCtrl.push(AdminUserDetailPage, {uid: uid});
           }
         },
-        {
-          text:'Inhabilitar',
+        {          
+          text:'Inhabilitar cuenta',
           role: 'destructive',
           handler:()=>{
-            //Aqui va el codigo 
+            if(confirm('¿Estas seguro de inhabilitar este usuario?')){
+              this._up.inhabilitar(uid);
+              console.log('Se inhabilito');
           } 
-        },
-        {
-          text:'Eliminar',
-          role: 'destructive',
-          handler:()=>{
-           if(confirm('¿Estas seguro de eliminar este usuario?')){
-            // this._up.deleteUser();
-            console.log('Se elimino');
-            
-           }
-          }
+        }
         },
         {
           text:'Cancel',

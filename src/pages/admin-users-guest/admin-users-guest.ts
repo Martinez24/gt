@@ -41,29 +41,29 @@ export class AdminUsersGuestPage {
     modal.present();
   }
 
-  selectUsuario(){
+  selectUsuario(uid){
     this.actionSheet.create({
       title: 'Acciones',
       buttons:[
-        {
-          text: 'Editar',
-          handler:()=>{
-            //Aqui va el codigo 
-          }
-        },
-        {
-          text:'Inhabilitar',
-          role: 'destructive',
-          handler:()=>{
-            //Aqui va el codigo 
-          } 
-        },
+        // {
+        //   text: 'Editar',
+        //   handler:()=>{
+        //     //Aqui va el codigo 
+        //   }
+        // },
+        // {
+        //   text:'Inhabilitar cuenta',
+        //   role: 'destructive',
+        //   handler:()=>{
+        //     //Aqui va el codigo 
+        //   } 
+        // },
         {
           text:'Eliminar',
           role: 'destructive',
           handler:()=>{
            if(confirm('¿Estas seguro de eliminar este usuario?')){
-             this._up.deleteUser();
+             this._up.delete_user(uid);
             console.log('Se elimino');
             
            }
@@ -80,5 +80,6 @@ export class AdminUsersGuestPage {
       ]
     }).present();
   }
+  
 
 }

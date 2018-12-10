@@ -22,7 +22,7 @@
     <div [ngSwitch]="user">
         <div *ngFor="let admin of admins | async">
             <ion-list class="list_blanco_transp" *ngSwitchCase="'empleado'">
-                <ion-item *ngIf="admin.type == 'e' ">
+                <ion-item *ngIf="admin.type == 'e' " (click)="selectUsuario(admin.uid)">
                     <ion-thumbnail item-start>
                         <img src="../assets/imgs/icons/profile.png">
                     </ion-thumbnail>
@@ -40,7 +40,7 @@
         </div>
         <div *ngFor="let admin of admins | async">
             <ion-list class="list_blanco_transp" *ngSwitchCase="'administrador'">
-                <ion-item *ngIf="admin.type == 'a' " (click)="selectUsuario()">
+                <ion-item *ngIf="admin.type == 'a' " (click)="selectUsuario(admin.uid)">
                     <ion-thumbnail item-start>
                         <img class="border" src="../assets/imgs/icons/profile.png">
                     </ion-thumbnail>

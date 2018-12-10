@@ -1,46 +1,42 @@
 page-eventos {
-  // ion-icon{
-  //   color: #eccc68;
-  // }
-  ion-content{
-    background-image: url('../assets/imgs/fondoblanco2.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-      //background-position: center;
-    width: 100%;
-    position: relative;
-    border: none;
-    color: #f4f4f4;
-  }
-  .icon{
-    mask-size: contain;
-    mask-position: 50% 50%;
-    mask-repeat: no-repeat;
-    //background: currentColor;
-    width: 1em;
-    height: 1em;
-    margin-right: 8px;
-
-  }
-
-  // .menu{
-  // //background:  #eccc68;
-  //  color: #eccc68;
-  // }
-
-  ion-card .item{
-    position: relative;
-    text-align: center;
-    width: 100%;
-    border: none;
-    margin-left: auto;
-    margin-top: -15px;
-  }
-
-  .card_atras{
-    background: #000;
-  }
-  .text{
-      $toolbar-ios-title-text-color: #f4f4f4;
-  }
+    // ion-icon{
+    //   color: #eccc68;
+    // }
+    ion-content {
+        background-image: url('../assets/imgs/fondoblanco2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        //background-position: center;
+        width: 100%;
+        position: relative;
+        border: none;
+        color: #f4f4f4;
+    }
+    .icon {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        //background: currentColor;
+        width: 1em;
+        height: 1em;
+        margin-right: 8px;
+    }
+    // .menu{
+    // //background:  #eccc68;
+    //  color: #eccc68;
+    // }
+    ion-card .item {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        border: none;
+        margin-left: auto;
+        margin-top: -15px;
+    }
+    .card_atras {
+        background: #000;
+    }
+    .text {
+        $toolbar-ios-title-text-color: #f4f4f4;
+    }
 }

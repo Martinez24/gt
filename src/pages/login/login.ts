@@ -22,7 +22,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  firedata = firebase.database().ref('/users_user');
+  acti : any[];
+  firedata = firebase.database().ref('/users');
+  
 
   pageLogin="admin-login";
   constructor(public navCtrl: NavController,
@@ -35,6 +37,8 @@ export class LoginPage {
               ) {
   }
 
+    
+    
   signInGoogle()  {
     this.googlePlus.login({
     'webClientId': '853477386824-kt4bl5ccfs8hgfm255i3384fhb6e50jq.apps.googleusercontent.com',
@@ -43,19 +47,23 @@ export class LoginPage {
     firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
           .then( user => {
             console.log(JSON.stringify(user));
+            console.log(res.idToken);            
             this.usuarioProv.cargarUsuario(
               user.displayName,
               user.email,
               user.photoURL,
               user.uid,
+              user.phoneNumber,
               'google'
             );
-            this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+            this.afiredatabase.list('/users/').update(this.usuarioProv.usuario.uid, {
               uid: this.usuarioProv.usuario.uid,
               displayName: user.displayName,
               email: user.email,
               photoURL: user.photoURL,
-              provider: 'google'
+              provider: 'google',
+              phoneNumber: user.phoneNumber,
+              type: 'u'
             });
             this.navCtrl.setRoot(TabsPage);
           })
@@ -76,15 +84,19 @@ export class LoginPage {
             user.email,
             user.photoURL,
             user.uid,
+            user.phoneNumber,
             'facebook'
           
           );
-          this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+          this.afiredatabase.list('/users/').update(this.usuarioProv.usuario.uid, {
             uid: this.usuarioProv.usuario.uid,
             displayName: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
-            provider: 'facebook'
+            phoneNumber: user.phoneNumber,
+            provider: 'facebook',
+            type: 'u'
+
           });
           this.navCtrl.setRoot(TabsPage);
 
@@ -92,6 +104,7 @@ export class LoginPage {
       })
     }else{
       //Escritorio
+      
       this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
@@ -104,14 +117,18 @@ export class LoginPage {
           user.email,
           user.photoURL,
           user.uid,
+          user.phoneNumber,
           'facebook'
         );
-        this.afiredatabase.list('/users_user/').update(this.usuarioProv.usuario.uid, {
+        this.afiredatabase.list('/users/').update(this.usuarioProv.usuario.uid, {
           uid: this.usuarioProv.usuario.uid,
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
-          provider: 'facebook'
+          provider: 'facebook',
+          phoneNumber: user.phoneNumber,
+          type: 'u',
+          active: ''
         });
         this.navCtrl.setRoot(TabsPage);
       });
