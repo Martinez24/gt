@@ -7,6 +7,7 @@ import { AdminEventoHomePage } from "../../pages/admin-evento-home/admin-evento-
 import { AdminCartaHomePage } from '../../pages/admin-carta-home/admin-carta-home';
 import { AdminUsersListPage } from '../admin-users-list/admin-users-list';
 //import { AdminUsersPage } from "../../pages/admin-users/admin-users";
+import { AdminMenuReservacionPage } from '../admin-menu-reservacion/admin-menu-reservacion';
 
 
 
@@ -34,5 +35,8 @@ goUsers(){
  }
  goCarta(){
    this.navCtrl.push(AdminCartaHomePage);
+ }
+ goReservacion(){
+  this.navCtrl.push(AdminMenuReservacionPage);
  }
 }

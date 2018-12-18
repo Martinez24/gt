@@ -1,30 +1,30 @@
-<ion-menu  [content]="content">
-  <ion-content class="menu-content" padding>
-    <h4 >Menú</h4>
-    <ion-list class="menu-list">
-      <button  ion-item (click)="irHome( home )">
+<ion-menu [content]="content">
+    <ion-content class="menu-content" padding>
+        <h4>Menú</h4>
+        <ion-list class="menu-list">
+            <button ion-item (click)="irHome( home )">
         <img class="home" src="../assets/imgs/icons/home.png">  Home
       </button>
-      <button ion-item (click)="irNosotros( nosotros )">
+            <!-- <button ion-item (click)="irNosotros( nosotros )">
       <img class="home" src="../assets/imgs/icons/corona.png">  Nosotros
-      </button>
-      <button ion-item (click)="irReservacion( reservacion )">
+      </button> -->
+            <button ion-item (click)="irReservacion( reservacion )">
         <img class="home" src="../assets/imgs/icons/time.png"> Reservaciones
       </button>
-      <button ion-item (click)="irCarta( carta )">
+            <button ion-item (click)="irCarta( carta )">
         <img class="home" src="../assets/imgs/icons/champagne.png">  Carta Móvil
       </button>
-      <button ion-item (click)="irPerfil( perfil )">
+            <button ion-item (click)="irPerfil( perfil )">
         <img class="home" src="../assets/imgs/icons/profile.png"> Perfil
       </button>
-      <button ion-item (click)="irHistorial( historial )">
+            <button ion-item (click)="irHistorial( historial )">
         <img class="home" src="../assets/imgs/icons/book.png">  Historial
       </button>
-      <button ion-item (click)="salir( rootPage )">
+            <button ion-item (click)="salir( rootPage )">
         <img class="home" src="../assets/imgs/icons/turn-off.png">  Cerrar Sesión
       </button>
-    </ion-list>
-  </ion-content>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 

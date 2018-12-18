@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, ToastController, ViewController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-import { HomePage } from '../../pages/home/home';
+//import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
 @Component({

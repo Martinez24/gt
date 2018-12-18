@@ -29,6 +29,10 @@ import { AdminUserUserPage } from '../pages/admin-user-user/admin-user-user';
 import { AdminCartaSubirPage } from '../pages/admin-carta-subir/admin-evento-subir';
 import { AdminUsersGuestPage } from '../pages/admin-users-guest/admin-users-guest';
 import { AdminUserDetailPage } from '../pages/admin-user-detail/admin-user-detail';
+import { AdminMenuReservacionPage } from '../pages/admin-menu-reservacion/admin-menu-reservacion';
+import { AdminSucursalListPage } from '../pages/admin-sucursal-list/admin-sucursal-list';
+import { AdminSucursalSubirPage } from '../pages/admin-sucursal-subir/admin-sucursal-subir';
+
 
 //Pipes
 import { PipesModule } from "../pipes/pipes.module";
@@ -55,6 +59,7 @@ import { UserProvider } from '../providers/user/user';
 //import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 
 
@@ -92,6 +97,9 @@ export const firebaseConfig = {
     AdminUsersGuestPage,
     AdminUserUserPage,
     AdminUserDetailPage,
+    AdminMenuReservacionPage,
+    AdminSucursalListPage,
+    AdminSucursalSubirPage,
     EventoDetallePage,
     
   ],
@@ -128,6 +136,9 @@ export const firebaseConfig = {
     AdminUsersGuestPage,
     AdminUserUserPage,
     AdminUserDetailPage,
+    AdminMenuReservacionPage,
+    AdminSucursalListPage,
+    AdminSucursalSubirPage,
     EventoDetallePage
   ],
   providers: [
