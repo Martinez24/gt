@@ -11,13 +11,16 @@ import { Reservacion_1Page } from "../pages/reservacion-1/reservacion-1";
 import { PerfilPage } from "../pages/perfil/perfil";
 import { HistorialPage } from "../pages/historial/historial";
 import { AngularFireAuth } from 'angularfire2/auth';
-import { UsuarioProvider } from "../providers/usuario/usuario";
+import { UsuarioProvider, Credenciales } from "../providers/usuario/usuario";
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
+  user: Credenciales = {};
+
   rootPage:any = LoginPage;
   home = TabsPage;
   nosotros = NosotrosPage;
@@ -33,7 +36,10 @@ export class MyApp {
     public menuCtrl: MenuController,
     public usuarioProv: UsuarioProvider,
     private afAuth: AngularFireAuth) {
-
+    
+    console.log(this.usuarioProv.usuario);
+    this.user = this.usuarioProv.usuario;
+    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
