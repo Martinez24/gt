@@ -3,7 +3,7 @@
         <button class="bt" ion-button (click)="cerrar_modal()">
                 Cerrar
         </button>
-        <ion-title>Alta de empleados Guest</ion-title>
+        <ion-title>Alta de sucursales</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -12,9 +12,25 @@
 <ion-content class="fondo_admin" padding>
     <ion-list>
         <ion-item>
-            <ion-label floating>Nombre</ion-label>
-            <ion-input type="text" [(ngModel)]="credentials.name"></ion-input>
+            <ion-label floating>Nombre del contacto</ion-label>
+            <ion-input type="text" [(ngModel)]="credentials.nombrecontacto"></ion-input>
         </ion-item>
+
+        <ion-item>
+            <ion-label floating>Nombre sucursal</ion-label>
+            <ion-input type="text" [(ngModel)]="credentials.sucursal"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Teléfono</ion-label>
+            <ion-input type="phone" [(ngModel)]="credentials.telefono"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Dirección</ion-label>
+            <ion-input type="text" [(ngModel)]="credentials.direccion"></ion-input>
+        </ion-item>
+
         <ion-item>
             <ion-label floating>Email</ion-label>
             <ion-input type="email" [(ngModel)]="credentials.email"></ion-input>
@@ -23,15 +39,17 @@
             <ion-label floating>Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="credentials.password"></ion-input>
         </ion-item>
+
         <ion-item class="fond">
-            <ion-label>Tipo de usuario</ion-label>
-            <ion-select [(ngModel)]="credentials.type" class="fond">
-                <ion-option value="a">Administrador</ion-option>
-                <ion-option value="e">Empleado</ion-option>
+            <ion-label>Tipo de sucursal</ion-label>
+            <ion-select [(ngModel)]="credentials.tipo" class="fond">
+                <ion-option value="bar">Bar</ion-option>
+                <ion-option value="antro">Antro</ion-option>
+                <ion-option value="restaurante">Restaurante</ion-option>
             </ion-select>
         </ion-item>
         <ion-item text-center>
-            <button color="dark" ion-button round style="min-width: 200px; padding: 10px 16px" (click)="register()">Register</button>
+            <button color="dark" ion-button round style="min-width: 200px; padding: 10px 16px" (click)="register()">Registrar</button>
         </ion-item>
     </ion-list>
 </ion-content>

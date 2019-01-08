@@ -8,6 +8,16 @@
 
 
 <ion-content class="fondo_admin">
+    <ion-card-header class="marg" color="light">Lista de sucursales</ion-card-header>
+    <ion-list class="card_atras" *ngFor="let sucursal of sucursales | async">
+        <ion-item>
+            <ion-thumbnail item-start>
+                <img [src]="sucursal.photoURL">
+            </ion-thumbnail>
+            <h2>{{sucursal.displayName}}</h2>
+            <p> {{ sucursal.direccion }} </p>
+        </ion-item>
+    </ion-list>
     <ion-fab left bottom>
         <button ion-fab color="light"><ion-icon name="paper"></ion-icon></button>
         <ion-fab-list side="right">

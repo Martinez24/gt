@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AdminSucursalSubirPage } from '../admin-sucursal-subir/admin-sucursal-subir';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 
-/**
- * Generated class for the AdminSucursalListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -16,12 +13,15 @@ import { AdminSucursalSubirPage } from '../admin-sucursal-subir/admin-sucursal-s
 })
 export class AdminSucursalListPage {
 
+  sucursales: Observable<any[]>;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
-
+    public modalCtrl: ModalController,
+    public Db: AngularFireDatabase
     ) {
+      this.sucursales = this.Db.list('sucursales').valueChanges();
   }
 
   ionViewDidLoad() {

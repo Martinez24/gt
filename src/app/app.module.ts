@@ -32,6 +32,8 @@ import { AdminUserDetailPage } from '../pages/admin-user-detail/admin-user-detai
 import { AdminMenuReservacionPage } from '../pages/admin-menu-reservacion/admin-menu-reservacion';
 import { AdminSucursalListPage } from '../pages/admin-sucursal-list/admin-sucursal-list';
 import { AdminSucursalSubirPage } from '../pages/admin-sucursal-subir/admin-sucursal-subir';
+import { AdminSucursalPerfilPage } from '../pages/admin-sucursal-perfil/admin-sucursal-perfil';
+
 
 
 //Pipes
@@ -49,6 +51,8 @@ import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 import { CartaAddProvider } from '../providers/carta-add/carta-add';
 import { ToastProvider } from '../providers/toast/toast';
 import { CargaArchivoCartaProvider } from '../providers/carga-archivo-carta/carga-archivo';
+import { SucursalAltaProvider } from '../providers/sucursal-alta/sucursal-alta';
+
 
 
 //Plugins
@@ -101,6 +105,7 @@ export const firebaseConfig = {
     AdminSucursalListPage,
     AdminSucursalSubirPage,
     EventoDetallePage,
+    AdminSucursalPerfilPage,
     
   ],
   imports: [
@@ -139,7 +144,8 @@ export const firebaseConfig = {
     AdminMenuReservacionPage,
     AdminSucursalListPage,
     AdminSucursalSubirPage,
-    EventoDetallePage
+    EventoDetallePage,
+    AdminSucursalPerfilPage,
   ],
   providers: [
     StatusBar,
@@ -157,7 +163,8 @@ export const firebaseConfig = {
     CargaArchivoProvider,
     CartaAddProvider,
     ToastProvider,
-    CargaArchivoCartaProvider
+    CargaArchivoCartaProvider,
+    SucursalAltaProvider,
     //AuthService
   ]
 })
