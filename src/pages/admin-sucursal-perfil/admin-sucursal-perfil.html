@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Perfil</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="fondo_admin">
+    <h3 text-center class="blanco"> Información de la sucursal </h3>
+    <ion-grid class="margen">
+
+        <ion-row>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list no-lines class="margen_2">
+        <ion-item text-center>
+            <!--Filtro de bandera de usuario-->
+            <!-- <div class="filt">
+                <img class="cate" src="../assets/imgs/icons/gold_guest.png" item-start>
+            </div> -->
+            <!--Imagen del usuario-->
+            <ion-item *ngIf="sucursal.status == 'activo'">
+                <h4>Estado: </h4>
+                <ion-badge class="fon" item-end>Activo</ion-badge>
+            </ion-item>
+            <ion-item *ngIf="sucursal.status == 'falso'">
+                <h4>Estado: </h4>
+                <ion-badge class="fon2" item-end>Inhabilitado</ion-badge>
+
+            </ion-item>
+            <div class="">
+                <img class="imagen_perfil" [src]="sucursal.photoURL">
+            </div>
+        </ion-item>
+        <ion-item>
+            <img class="icon" src="../assets/imgs/icons/profile.png" item-start>
+            <div class="margen3">
+                <h4> Nombre:</h4> {{sucursal.displayName}}</div>
+        </ion-item>
+        <ion-item>
+            <img class="icon" src="../assets/imgs/icons/correo.png" item-start>
+            <div class="margen3">
+                <h4>Correo:</h4>{{ sucursal.email}}</div>
+        </ion-item>
+        <ion-item>
+            <img class="icon" src="../assets/imgs/icons/cumple.png" item-start>
+            <div class="margen3">
+                <h4>Contacto:</h4>{{ sucursal.contacto }}</div>
+        </ion-item>
+        <ion-item>
+            <img class="icon" src="../assets/imgs/icons/telefono.png" item-start>
+            <div class="margen3">
+                <h4>Teléfono:</h4> {{ sucursal.tel }} </div>
+        </ion-item>
+        <ion-item>
+            <div class="margen3">
+                <h4>Dirección:</h4>{{ sucursal.direccion }}</div>
+        </ion-item>
+
+        <ion-item>
+            <div class="margen3">
+                <h4>Giro</h4>{{ sucursal.tipo }}
+            </div>
+        </ion-item>
+        <ion-item>
+            <button ion-button (click)="salir()" color="dark" block>
+        Cerrar Sesión
+      </button>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

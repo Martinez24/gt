@@ -8,6 +8,13 @@ import { AdminCartaHomePage } from '../../pages/admin-carta-home/admin-carta-hom
 import { AdminUsersListPage } from '../admin-users-list/admin-users-list';
 //import { AdminUsersPage } from "../../pages/admin-users/admin-users";
 import { AdminMenuReservacionPage } from '../admin-menu-reservacion/admin-menu-reservacion';
+import { SucursalAltaProvider } from '../../providers/sucursal-alta/sucursal-alta';
+import { AdminSucursalPerfilPage } from '../admin-sucursal-perfil/admin-sucursal-perfil';
+
+//import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 
 
@@ -18,9 +25,33 @@ import { AdminMenuReservacionPage } from '../admin-menu-reservacion/admin-menu-r
 })
 export class AdminHomePage {
 
-  constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-      public authProvider: AuthProvider) {
+  //sucursal: Credenciales = {};
+  //data: any = {};
+  email: string;
+  displayName: string;
+  uid: string;
+
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public authProvider: AuthProvider,
+      public sucProv: SucursalAltaProvider,
+      public firebase: AngularFireAuth
+      ) {
+    var sucursal = this.firebase.auth.currentUser;
+    
+    if(sucursal != null ){
+      this.uid = sucursal.uid;
+      this.email = sucursal.email;
+      
+      // photoURL = sucursal.photoURL;
+      // uid = sucursal.uid;
+    }
+    console.log('Este es el UID de la sucursal '+sucursal.uid);
+    console.log('Este es el correo de la sucursal '+sucursal.email);
+  }
+  ionViewDidLoad() {
+    console.log('HOME PAGE');
   }
 
   logout() {
@@ -38,5 +69,8 @@ goUsers(){
  }
  goReservacion(){
   this.navCtrl.push(AdminMenuReservacionPage);
+ }
+ goPerfilSucursal(uid){
+  this.navCtrl.push(AdminSucursalPerfilPage, {uid:uid});
  }
 }

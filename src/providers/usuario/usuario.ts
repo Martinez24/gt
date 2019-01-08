@@ -27,11 +27,11 @@ usuario: Credenciales = {};
                 uid:string,
                 phone: string,
                 provider:string){
-              this.usuario.nombre= nombre;  
+              this.usuario.nombre= nombre;
               this.usuario.email = email;
-              this.usuario.imagen= imagen;  
+              this.usuario.imagen= imagen;
               this.usuario.uid = uid;
-              this.usuario.provider = provider; 
+              this.usuario.provider = provider;
               this.usuario.phone = phone;
                 }
 
@@ -41,7 +41,7 @@ usuario: Credenciales = {};
 
    inhabilitar(uid){
      console.log(uid);
-     
+
     this.data ={
       active: false
     }
@@ -49,16 +49,16 @@ usuario: Credenciales = {};
    }
    habilitar(uid){
     console.log(uid);
-    
+
    this.data ={
      active: true
    }
    this.afDB.database.ref('users/'+ uid).update(this.data);
-  } 
-  
-               
+  }
+
+
 }
- 
+
 export interface Credenciales {
   nombre?:string;
   email?:string;

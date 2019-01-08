@@ -10,6 +10,14 @@
     </ion-navbar>
 </ion-header>
 <ion-content class="fondo_admin">
+    <div class="hea">
+        <button class="foo" ion-item (click)="goPerfilSucursal(uid)" icon-start>
+             <ion-icon>
+                 <img class="suc" src="../assets/imgs/icons/profile.png"> 
+            </ion-icon>
+               {{ email }}
+     </button>
+    </div>
     <div class="centrar">
         <ion-row>
             <ion-col class="text-center">
@@ -42,12 +50,14 @@
       <ion-icon item-start><img class="home" src="../assets/imgs/icons/corona.png"> </ion-icon>
       Administrar Reservaciones
     </button>
-        <button class="atras" ion-item (click)="logout()" icon-start>
-      <ion-icon item-start><img class="home" src="../assets/imgs/icons/turn-off.png"> </ion-icon>
-      Cerrar Sesión
-    </button>
-    </ion-list>
 
+    </ion-list>
+    <ion-footer>
+        <button class="foo" ion-item (click)="logout()" icon-start>
+            <ion-icon><img class="home" src="../assets/imgs/icons/turn-off.png"> </ion-icon>
+        Cerrar Sesión
+        </button>
+    </ion-footer>
 
 
 </ion-content>

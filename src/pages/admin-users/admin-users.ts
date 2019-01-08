@@ -21,8 +21,8 @@ export class AdminUsersPage {
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    public userProvider: UserProvider,
-    private viewCtrl: ViewController,    
+    private viewCtrl: ViewController,
+    public userProvider: UserProvider
     ) {  }
 
   register() {
