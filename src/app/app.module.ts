@@ -33,6 +33,8 @@ import { AdminMenuReservacionPage } from '../pages/admin-menu-reservacion/admin-
 import { AdminSucursalListPage } from '../pages/admin-sucursal-list/admin-sucursal-list';
 import { AdminSucursalSubirPage } from '../pages/admin-sucursal-subir/admin-sucursal-subir';
 import { AdminSucursalPerfilPage } from '../pages/admin-sucursal-perfil/admin-sucursal-perfil';
+import { AdminSucursalEditperfilPage } from '../pages/admin-sucursal-editperfil/admin-sucursal-editperfil';
+
 
 
 
@@ -106,6 +108,7 @@ export const firebaseConfig = {
     AdminSucursalSubirPage,
     EventoDetallePage,
     AdminSucursalPerfilPage,
+    AdminSucursalEditperfilPage,
     
   ],
   imports: [
@@ -146,6 +149,7 @@ export const firebaseConfig = {
     AdminSucursalSubirPage,
     EventoDetallePage,
     AdminSucursalPerfilPage,
+    AdminSucursalEditperfilPage,
   ],
   providers: [
     StatusBar,

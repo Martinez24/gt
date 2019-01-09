@@ -70,6 +70,9 @@ goUsers(){
  goReservacion(){
   this.navCtrl.push(AdminMenuReservacionPage);
  }
+ goUsuarioHis(){
+   
+ }
  goPerfilSucursal(uid){
   this.navCtrl.push(AdminSucursalPerfilPage, {uid:uid});
  }

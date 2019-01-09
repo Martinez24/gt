@@ -5,7 +5,10 @@ import firebase from 'firebase'
 
 @Injectable()
 export class SucursalAltaProvider {
+
     sucursal: Credenciales = {};
+
+    selectedSucursalItem: Credenciales = new Credenciales();
 
   firedata = firebase.database().ref('/sucursales');
 
@@ -58,7 +61,7 @@ export class SucursalAltaProvider {
                 tel:string,
                 uid:string
                     ){
-                        this.sucursal.sucursal = sucursal;
+                        this.sucursal.displayName = sucursal;
                         this.sucursal.contacto = contacto;
                         this.sucursal.direccion = direccion;
                         this.sucursal.imagen = imagen;
@@ -70,13 +73,20 @@ public getSucursal(uid){
     return this.afiredatabase.object('sucursales/'+uid);
 }
 
+updateProfile(data){
+    console.log(data.uid);
+    this.afiredatabase.database.ref('sucursales/'+data.uid).update(data);
 }
-export interface Credenciales{
+
+}
+
+export class Credenciales{
     uid?:string;
-    sucursal?:string;
+    displayName?:string;
     contacto?:string;
     direccion?:string;
     imagen?:string;
     email?:string;
     tel?:string;
+    tipo?: number;
 }
