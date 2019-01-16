@@ -4,6 +4,8 @@ import { SucursalAltaProvider, Credenciales } from '../../providers/sucursal-alt
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { AdminSucursalEditperfilPage } from '../admin-sucursal-editperfil/admin-sucursal-editperfil';
+import { AdminSucursalEditperfilImagenPage } from '../admin-sucursal-editperfil-imagen/admin-sucursal-editperfil-imagen';
+
 
 
 
@@ -45,6 +47,9 @@ export class AdminSucursalPerfilPage {
     this.navCtrl.push(AdminSucursalEditperfilPage, this.SucProv.selectedSucursalItem = Object.assign({}, sucursalItem))
     console.log(sucursalItem);
     
+  }
+  goEditPerfilImagen(uid){
+    this.navCtrl.push(AdminSucursalEditperfilImagenPage, {uid: uid});
   }
   
 }

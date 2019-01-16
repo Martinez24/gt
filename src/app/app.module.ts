@@ -34,6 +34,7 @@ import { AdminSucursalListPage } from '../pages/admin-sucursal-list/admin-sucurs
 import { AdminSucursalSubirPage } from '../pages/admin-sucursal-subir/admin-sucursal-subir';
 import { AdminSucursalPerfilPage } from '../pages/admin-sucursal-perfil/admin-sucursal-perfil';
 import { AdminSucursalEditperfilPage } from '../pages/admin-sucursal-editperfil/admin-sucursal-editperfil';
+import { AdminSucursalEditperfilImagenPage } from '../pages/admin-sucursal-editperfil-imagen/admin-sucursal-editperfil-imagen';
 
 
 
@@ -109,6 +110,7 @@ export const firebaseConfig = {
     EventoDetallePage,
     AdminSucursalPerfilPage,
     AdminSucursalEditperfilPage,
+    AdminSucursalEditperfilImagenPage
     
   ],
   imports: [
@@ -150,6 +152,7 @@ export const firebaseConfig = {
     EventoDetallePage,
     AdminSucursalPerfilPage,
     AdminSucursalEditperfilPage,
+    AdminSucursalEditperfilImagenPage
   ],
   providers: [
     StatusBar,

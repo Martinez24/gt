@@ -39,6 +39,9 @@
             </ion-item>
             <div class="">
                 <img class="imagen_perfil" [src]="sucursal.photoURL">
+                <ion-badge (click)="goEditPerfilImagen(sucursal.uid)" class="edit_pho">
+                    <ion-icon name="md-brush" ios="ios-outline" md="md-brush"></ion-icon>
+                </ion-badge>
             </div>
         </ion-item>
         <ion-item>

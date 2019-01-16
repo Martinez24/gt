@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import firebase from 'firebase'
+//import firebase from 'firebase'
+import * as firebase from 'firebase';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class SucursalAltaProvider {
 
     sucursal: Credenciales = {};
-
+    imagenes: Credenciales[] = [];
     selectedSucursalItem: Credenciales = new Credenciales();
 
   firedata = firebase.database().ref('/sucursales');
 
   constructor(
     public afireauth: AngularFireAuth,
-    public afiredatabase: AngularFireDatabase
+    public afiredatabase: AngularFireDatabase,
+    public toastCtrl: ToastController
   ) {
     console.log('Hello SucursalAltaProvider Provider');
   }
@@ -58,7 +61,7 @@ export class SucursalAltaProvider {
                 direccion:string,
                 imagen:string,
                 email:string,
-                tel:string,
+                tel:number,
                 uid:string
                     ){
                         this.sucursal.displayName = sucursal;
@@ -77,7 +80,65 @@ updateProfile(data){
     console.log(data.uid);
     this.afiredatabase.database.ref('sucursales/'+data.uid).update(data);
 }
+cargar_imagen_firebase( archivo:Credenciales  ){
 
+    let promesa = new Promise( (resolve, reject)=>{
+      this.mostrar_toast('Cargando..');
+
+      let storeRef = firebase.storage().ref();
+      let photoURL:string = new Date().valueOf().toString();
+
+      let uploadTask: firebase.storage.UploadTask =
+     storeRef.child(`sucursales/${ photoURL }.jpg`)
+     .putString( archivo.imagen, 'base64', { contentType: 'image/jpeg' } );
+          uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+            ()=>{},//saber el % cuantos se han subido
+            ( error )=>{
+            //manejo
+            console.log("Error en la carga");
+            console.log(JSON.stringify(error));
+            this.mostrar_toast(JSON.stringify(error));
+            reject();
+          },
+          ()=>{
+            // TODO BIEN!
+            console.log('Archivo subido');
+            this.mostrar_toast('Imagen cargada correctamente');
+            // let url = uploadTask.snapshot.downloadURL;
+            // this.crear_post( archivo.titulo, url, nombreArchivo );
+            // resolve();
+              uploadTask.snapshot.ref.getDownloadURL().then(( url )=>{
+            //   console.log('nombreArchivo', nombreArchivo);
+            //  console.log('url', url);
+            //   console.log('file.titulo', archivo.titulo);
+              this.crear_post(archivo.uid, url);
+              resolve();
+  });
+
+          }
+          )
+    });
+    return promesa;
+  }
+public crear_post(uid, url:string){
+    let sucursal: Credenciales = {
+        uid: uid,
+        photoURL: url,
+
+    };
+    console.log(JSON.stringify(sucursal));
+    this.afiredatabase.object(`sucursales/${ url }` + uid).update(sucursal);
+    // this.imagenes.push(sucursal);
+    this.mostrar_toast('Imagen actualizada');
+}
+
+mostrar_toast( mensaje: string,  ){
+
+    const toast = this.toastCtrl.create({
+       message: mensaje,
+       duration: 3000
+     }).present();
+   }
 }
 
 export class Credenciales{
@@ -86,7 +147,9 @@ export class Credenciales{
     contacto?:string;
     direccion?:string;
     imagen?:string;
+    photoURL?: string;
     email?:string;
-    tel?:string;
-    tipo?: number;
+    tel?:number;
+    tipo?: string;
+
 }
