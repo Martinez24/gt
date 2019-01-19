@@ -13,7 +13,7 @@ export class AdminSucursalEditperfilPage {
   data: any = {};
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public sucProv: SucursalAltaProvider,
     public toastCtrl: ToastController,
@@ -24,13 +24,13 @@ export class AdminSucursalEditperfilPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminSucursalEditperfilPage');
-    console.log(this.sucursalItem);
-    
+    console.log('SUCURSALITEM', this.sucProv.selectedSucursalItem);
+
   }
 
   savePerfil(sucursalItem: Credenciales){
     console.log(sucursalItem);
-    
+
     this.data={
       contacto: this.sucProv.selectedSucursalItem.contacto,
       direccion: this.sucProv.selectedSucursalItem.direccion,
@@ -43,26 +43,26 @@ export class AdminSucursalEditperfilPage {
     console.log(this.data);
     this.sucProv.updateProfile(this.data);
     this.navCtrl.pop();
-    
+
   }
   changePass(email){
  var auth = this.Fiauth.auth;
   email;
-    // Email sent.   
+    // Email sent.
     if(confirm('¿Estás seguro de que quieres restablecer la contraseña?')){
     auth.sendPasswordResetEmail(email);
-     this.mostrar_toast('Se ha enviado un correo para el cambio/restablecimiento de contraseña a '+ email);       
+     this.mostrar_toast('Se ha enviado un correo para el cambio/restablecimiento de contraseña a '+ email);
 
-        // console.log('Correo enviado a '+ email); 
+        // console.log('Correo enviado a '+ email);
   }
 }
 mostrar_toast( mensaje: string,  ){
-  
+
   const toast = this.toastCtrl.create({
      message: mensaje,
      duration: 3000
    }).present();
- 
+
 }
-  
+
 }
