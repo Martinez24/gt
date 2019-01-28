@@ -41,10 +41,8 @@
             <ion-label floating>Descripción</ion-label>
             <ion-textarea class="fond" placeholder="Descripción" [(ngModel)]="_cap.selectedEventoItem.obs" name="obs" autocomplete="on" autocorrect="on"></ion-textarea>
         </ion-item>
-
-
-        <ion-item type="hidden">
-            <ion-input type="hidden" [(ngModel)]="_cap.selectedEventoItem.img"></ion-input>
+        <ion-item>
+            <button (click)="editEventoImg(_cap.selectedEventoItem.key)"><img [src]="_cap.selectedEventoItem.img" alt=""></button>
         </ion-item>
         <ion-row>
             <ion-col>

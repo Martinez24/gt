@@ -45,6 +45,11 @@ export class EventosPage {
       .catch( ()=>{} ) // si sucede un error
 
   }
+  compartirInsta( evento:any ) {
+    this.socialSharing.shareViaInstagram( evento.titulo, evento.img)
+    .then( ()=>{} ) // se pudo compartir
+    .catch( ()=>{} ) // si sucede un error
+  }
   verDetalle(key){
     this.navCtrl.push(EventoDetallePage, {key:key});
   }

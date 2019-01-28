@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
 import { ArchivoSubir } from '../../providers/carga-archivo/ArchivoSubir';
+import { AdminEventoImageEditPage } from '../admin-evento-image-edit/admin-evento-image-edit';
 
 
 
@@ -38,8 +39,9 @@ export class AdminEventoEditPage {
     }
     console.log(this.data);
     this._cap.updateEvento(this.data);
-    this.navCtrl.pop();
-    
+    this.navCtrl.pop();    
   }
-
+  editEventoImg(key) {
+    this.navCtrl.push(AdminEventoImageEditPage, {key:key});
+  }
 }

@@ -7,6 +7,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 //import { NgForm } from '@angular/forms';
 import { CargaArchivoCartaProvider } from '../../providers/carga-archivo-carta/carga-archivo';
 import { ArchivoSubir } from '../../providers/carga-archivo-carta/ArchivoSubir';
+import { AdminCartaImageEditPage } from '../admin-carta-image-edit/admin-carta-image-edit';
 
 
 
@@ -73,5 +74,8 @@ data:any = {};
 
     //console.log(this.crPr.selectedProduct.$key);
 
+  }
+  editCartaImg(key) {
+    this.navCtrl.push(AdminCartaImageEditPage, {key:key});
   }
 }

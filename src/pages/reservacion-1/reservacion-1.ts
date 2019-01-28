@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs-compat';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 /**
  * Generated class for the Reservacion_1Page page.
@@ -14,8 +16,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'reservacion-1.html',
 })
 export class Reservacion_1Page {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+sucursales: Observable<any[]>;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afDB: AngularFireDatabase) {
+    this.sucursales = afDB.list('sucursales').valueChanges();
   }
 
   ionViewDidLoad() {

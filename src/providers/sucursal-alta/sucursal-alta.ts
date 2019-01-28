@@ -90,7 +90,7 @@ cargar_imagen_firebase( archivo:Credenciales  ){
 
       let uploadTask: firebase.storage.UploadTask =
      storeRef.child(`sucursales/${ photoURL }.jpg`)
-     .putString( archivo.imagen, 'base64', { contentType: 'image/jpeg' } );
+     .putString( archivo.photoURL, 'base64', { contentType: 'image/jpeg' } );
           uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
             ()=>{},//saber el % cuantos se han subido
             ( error )=>{
@@ -107,13 +107,14 @@ cargar_imagen_firebase( archivo:Credenciales  ){
             // let url = uploadTask.snapshot.downloadURL;
             // this.crear_post( archivo.titulo, url, nombreArchivo );
             // resolve();
-              uploadTask.snapshot.ref.getDownloadURL().then(( url )=>{
-            //   console.log('nombreArchivo', nombreArchivo);
-            //  console.log('url', url);
-            //   console.log('file.titulo', archivo.titulo);
-              this.crear_post(archivo.uid, url);
+              uploadTask.snapshot.ref.getDownloadURL().then( urlImage => {
+                  this.crear_post(archivo.uid, urlImage);
+                  this.mostrar_toast('URL'+ urlImage);
+              }).catch((error) => {
+                  console.log(error);
+
+              });
               resolve();
-  });
 
           }
           )
@@ -127,7 +128,7 @@ public crear_post(uid, url:string){
 
     };
     console.log(JSON.stringify(sucursal));
-    this.afiredatabase.object(`sucursales/${ url }` + uid).update(sucursal);
+    this.afiredatabase.object(`sucursales/`+uid).update(sucursal);
     // this.imagenes.push(sucursal);
     this.mostrar_toast('Imagen actualizada');
 }

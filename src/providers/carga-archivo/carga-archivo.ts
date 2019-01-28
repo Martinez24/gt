@@ -6,6 +6,7 @@ import   "rxjs/add/operator/map";
 import { Observable } from 'rxjs-compat';
 import { ArchivoSubir } from './ArchivoSubir';
 
+
 @Injectable()
 export class CargaArchivoProvider {
   
@@ -13,8 +14,9 @@ export class CargaArchivoProvider {
 
   imagenes: ArchivoSubir[] = [];
   eventos: Observable<any[]>;
+  
   //lastKey: string = null;
-
+  
 
   constructor(public toastCtrl: ToastController,
               //public navCtrl: NavController,              
@@ -161,8 +163,67 @@ mostrar_toast( mensaje: string,  ){
      duration: 3000
    }).present();
  }
+// Edicion de imagen 
+cargar_imagen_firebase_evento( archivo:Credenciales  ){
+
+  let promesa = new Promise( (resolve, reject)=>{
+    this.mostrar_toast('Cargando..');
+
+    let storeRef = firebase.storage().ref();
+    let img:string = new Date().valueOf().toString();
+
+    let uploadTask: firebase.storage.UploadTask =
+   storeRef.child(`evento/${ img }.jpg`)
+   .putString( archivo.img, 'base64', { contentType: 'image/jpeg' } );
+        uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+          ()=>{},//saber el % cuantos se han subido
+          ( error )=>{
+          //manejo
+          console.log("Error en la carga");
+          console.log(JSON.stringify(error));
+          this.mostrar_toast(JSON.stringify(error));
+          reject();
+        },
+        ()=>{
+          // TODO BIEN!
+          console.log('Archivo subido');
+          this.mostrar_toast('Imagen cargada correctamente');
+          // let url = uploadTask.snapshot.downloadURL;
+          // this.crear_post( archivo.titulo, url, nombreArchivo );
+          // resolve();
+            uploadTask.snapshot.ref.getDownloadURL().then( urlImage => {
+                this.crear_post_edev(archivo.key, urlImage);
+                this.mostrar_toast('URL'+ urlImage);
+            }).catch((error) => {
+                console.log(error);
+
+            });
+            resolve();
+
+        }
+        )
+  });
+  return promesa;
 }
-
-
-
+public crear_post_edev(key, url:string){
+  let evento: Credenciales = {
+      key: key,
+      img: url
+  };
+  console.log(JSON.stringify(evento));
+  this.afDB.object(`evento/`+key).update(evento);
+  // this.imagenes.push(sucursal);
+  this.mostrar_toast('Imagen actualizada');
+}
+}
+export class Credenciales {
+  titulo?: string;
+  fecha?: string;
+  hora?: string;
+  categoria?: string;
+  lugar?: string;
+  obs?: string;
+  img?: string;
+  key?: string;
+}
 

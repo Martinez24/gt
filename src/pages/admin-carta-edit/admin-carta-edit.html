@@ -33,8 +33,8 @@
 
         </ion-item>
 
-        <ion-item type="hidden">
-            <ion-input type="hidden" [(ngModel)]="crPr.selectedProduct.img"></ion-input>
+        <ion-item>
+            <button (click)="editCartaImg(crPr.selectedProduct.key)"><img [src]="crPr.selectedProduct.img" alt=""></button>
         </ion-item>
         <ion-row>
             <ion-col>

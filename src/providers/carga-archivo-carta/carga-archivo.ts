@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { ArchivoSubir } from './ArchivoSubir';
 //import   "rxjs/add/operator/map";
 //import { Observable } from 'rxjs/Observable';
+import { Credenciales } from '../usuario/usuario';
 
 @Injectable()
 export class CargaArchivoCartaProvider {
@@ -140,8 +141,7 @@ updateCarta(data)
     console.log(data.KEY);
     this.afDB.database.ref('bebidas/'+data.KEY).update(data);
   }
-
-
+  
 mostrar_toast( mensaje: string  ){
 
   const toast = this.toastCtrl.create({
@@ -152,8 +152,69 @@ mostrar_toast( mensaje: string  ){
  public getEvento(id){
     return this.afDB.object('bebidas/'+id);
  }
+ // Edicion de imagen 
+cargar_imagen_firebase_carta( archivo:CartaSubir  ){
+
+  let promesa = new Promise( (resolve, reject)=>{
+    this.mostrar_toast('Cargando..');
+
+    let storeRef = firebase.storage().ref();
+    let img:string = new Date().valueOf().toString();
+
+    let uploadTask: firebase.storage.UploadTask =
+   storeRef.child(`bebidas/${ img }.jpg`)
+   .putString( archivo.img, 'base64', { contentType: 'image/jpeg' } );
+        uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+          ()=>{},//saber el % cuantos se han subido
+          ( error )=>{
+          //manejo
+          console.log("Error en la carga");
+          console.log(JSON.stringify(error));
+          this.mostrar_toast(JSON.stringify(error));
+          reject();
+        },
+        ()=>{
+          // TODO BIEN!
+          console.log('Archivo subido');
+          this.mostrar_toast('Imagen cargada correctamente');
+          // let url = uploadTask.snapshot.downloadURL;
+          // this.crear_post( archivo.titulo, url, nombreArchivo );
+          // resolve();
+            uploadTask.snapshot.ref.getDownloadURL().then( urlImage => {
+                this.crear_post_edev(archivo.key, urlImage);
+                this.mostrar_toast('URL'+ urlImage);
+            }).catch((error) => {
+                console.log(error);
+
+            });
+            resolve();
+
+        }
+        )
+  });
+  return promesa;
+}
+public crear_post_edev(key, url:string){
+  let carta: CartaSubir = {
+      key: key,
+      img: url
+  };
+  console.log(JSON.stringify(carta));
+  this.afDB.object(`bebidas/`+key).update(carta);
+  // this.imagenes.push(sucursal);
+  this.mostrar_toast('Imagen actualizada');
+}
  
 }
+export class CartaSubir {
+  titulo?: string;
+  categoria?: string;
+  precio?: string;
+  nota?: string;
+  img?: string;
+  key?: string;
+}
+
 
 
 

@@ -35,8 +35,8 @@ import { AdminSucursalSubirPage } from '../pages/admin-sucursal-subir/admin-sucu
 import { AdminSucursalPerfilPage } from '../pages/admin-sucursal-perfil/admin-sucursal-perfil';
 import { AdminSucursalEditperfilPage } from '../pages/admin-sucursal-editperfil/admin-sucursal-editperfil';
 import { AdminSucursalEditperfilImagenPage } from '../pages/admin-sucursal-editperfil-imagen/admin-sucursal-editperfil-imagen';
-
-
+import { AdminEventoImageEditPage } from '../pages/admin-evento-image-edit/admin-evento-image-edit';
+import { AdminCartaImageEditPage } from '../pages/admin-carta-image-edit/admin-carta-image-edit';
 
 
 //Pipes
@@ -56,8 +56,6 @@ import { ToastProvider } from '../providers/toast/toast';
 import { CargaArchivoCartaProvider } from '../providers/carga-archivo-carta/carga-archivo';
 import { SucursalAltaProvider } from '../providers/sucursal-alta/sucursal-alta';
 
-
-
 //Plugins
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -66,8 +64,6 @@ import { UserProvider } from '../providers/user/user';
 //import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
-
-
 
 
 export const firebaseConfig = {
@@ -110,7 +106,9 @@ export const firebaseConfig = {
     EventoDetallePage,
     AdminSucursalPerfilPage,
     AdminSucursalEditperfilPage,
-    AdminSucursalEditperfilImagenPage
+    AdminSucursalEditperfilImagenPage,
+    AdminEventoImageEditPage,
+    AdminCartaImageEditPage,
     
   ],
   imports: [
@@ -152,7 +150,9 @@ export const firebaseConfig = {
     EventoDetallePage,
     AdminSucursalPerfilPage,
     AdminSucursalEditperfilPage,
-    AdminSucursalEditperfilImagenPage
+    AdminSucursalEditperfilImagenPage,
+    AdminEventoImageEditPage,
+    AdminCartaImageEditPage,
   ],
   providers: [
     StatusBar,
